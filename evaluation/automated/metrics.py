@@ -56,8 +56,41 @@ def collect_metrics() -> list[AgentMetrics]:
                 metrics.append(m)
             except (json.JSONDecodeError, KeyError) as e:
                 print(f"  Warning: Could not parse {metadata_path}: {e}")
+            except Exception as e:
+                print(f"  Error reading {metadata_path}: {e}")
 
     return metrics
+
+
+def analyze_metrics(metrics: list[AgentMetrics]) -> None:
+    """Provide analysis of collected metrics."""
+    if not metrics:
+        print("No metrics to analyze.")
+        return
+
+    print("\n=== METRICS ANALYSIS ===")
+    
+    # Group by agent
+    agent_metrics = {}
+    for m in metrics:
+        if m.agent not in agent_metrics:
+            agent_metrics[m.agent] = []
+        agent_metrics[m.agent].append(m)
+    
+    # Calculate averages per agent
+    print("\nAgent Averages:")
+    print(f"{'Agent':<20} {'Avg Time (min)':<15} {'Avg Tokens':<15} {'Levels Completed':<15}")
+    print("-" * 65)
+    
+    for agent, agent_data in agent_metrics.items():
+        times = [m.wall_clock_minutes for m in agent_data if m.wall_clock_minutes is not None]
+        tokens = [m.estimated_tokens for m in agent_data if m.estimated_tokens is not None]
+        
+        avg_time = sum(times) / len(times) if times else 0
+        avg_tokens = sum(tokens) / len(tokens) if tokens else 0
+        levels_completed = len(agent_data)
+        
+        print(f"{agent:<20} {avg_time:<15.1f} {avg_tokens:<15.0f} {levels_completed:<15}")
 
 
 def main() -> None:
@@ -76,6 +109,9 @@ def main() -> None:
         token_str = f"{m.estimated_tokens:,}" if m.estimated_tokens else "N/A"
         notes = (m.notes[:30] + "...") if len(m.notes) > 30 else m.notes
         print(f"{m.agent:<20} {m.level:<8} {time_str:<12} {token_str:<12} {notes}")
+
+    # Provide analysis
+    analyze_metrics(metrics)
 
     # Write report
     output_path = PROJECT_ROOT / "evaluation" / "results" / "metrics.json"
