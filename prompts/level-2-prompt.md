@@ -14,7 +14,7 @@ harnesses/{your-agent-name}/output/level-2/
 For example:
 - Claude MPM -> `harnesses/claude-mpm/output/level-2/`
 - Claude Code -> `harnesses/claude-code/output/level-2/`
-- Cursor -> `harnesses/cursor/output/level-2/`
+- Codex -> `harnesses/codex/output/level-2/`
 
 This should be a properly structured Python project with `pyproject.toml`, `src/` layout, and `tests/`.
 

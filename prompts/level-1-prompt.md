@@ -14,7 +14,7 @@ harnesses/{your-agent-name}/output/level-1/
 For example:
 - Claude MPM -> `harnesses/claude-mpm/output/level-1/`
 - Claude Code -> `harnesses/claude-code/output/level-1/`
-- Cursor -> `harnesses/cursor/output/level-1/`
+- Codex -> `harnesses/codex/output/level-1/`
 
 Your solution directory should contain all source code, tests, and documentation.
 

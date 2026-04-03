@@ -14,7 +14,7 @@ harnesses/{your-agent-name}/output/level-5/
 For example:
 - Claude MPM -> `harnesses/claude-mpm/output/level-5/`
 - Claude Code -> `harnesses/claude-code/output/level-5/`
-- Cursor -> `harnesses/cursor/output/level-5/`
+- Codex -> `harnesses/codex/output/level-5/`
 
 ## Time Tracking
 

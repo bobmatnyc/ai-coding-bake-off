@@ -9,7 +9,7 @@ harnesses/
 ├── {agent-name}/
 │   ├── README.md          # Agent profile, how to reproduce
 │   ├── instructions/      # Everything the agent needs to know
-│   │   ├── CLAUDE.md      # (or .cursorrules, AGENTS.md, etc.)
+│   │   ├── CLAUDE.md      # (or AGENTS.md, aider.conf.yml, etc.)
 │   │   └── setup.md       # How to configure and run this agent
 │   └── output/            # Where solutions go
 │       ├── level-1/
@@ -26,11 +26,9 @@ harnesses/
 |-----------|-------|-----------------|-------------|
 | `claude-mpm/` | Claude MPM | `CLAUDE.md` + `.claude-mpm/` | Multi-agent orchestration via PM + specialist agents |
 | `claude-code/` | Claude Code | `CLAUDE.md` | Anthropic's CLI agent with tool use |
-| `cursor/` | Cursor | `.cursorrules` | IDE-integrated AI with Composer and multi-file editing |
 | `codex/` | Codex | `AGENTS.md` | OpenAI's CLI agent with sandboxed execution |
 | `gemini/` | Gemini CLI | `GEMINI.md` | Google's CLI agent with Gemini 2.5 Pro |
-| `anti-gravity/` | Anti-Gravity | `setup.md` | Agentic VS Code extension |
-| `auggie/` | Auggie (formerly Augment Code) | `setup.md` | Agentic IDE extension (scored 83.1% in Round 1) |
+| `auggie/` | Auggie (formerly Augment Code) | `setup.md` | CLI coding agent (scored 83.1% in Round 1) |
 | `qwen-aider/` | Qwen + Aider | `aider.conf.yml` | Local Qwen 3 model via Aider |
 | `deepseek-aider/` | DeepSeek + Aider | `aider.conf.yml` | Local DeepSeek V3 model via Aider |
 | `warp/` | Warp AI | `setup.md` | AI-powered terminal agent |

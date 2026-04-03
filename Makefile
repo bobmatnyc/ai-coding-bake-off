@@ -38,7 +38,7 @@ metrics: ## Collect all metrics
 
 # --- Setup ---
 
-setup-agent: ## Set up workspace for an agent: make setup-agent AGENT=cursor
+setup-agent: ## Set up workspace for an agent: make setup-agent AGENT=claude-code
 	bash scripts/setup_agent_workspace.sh $(AGENT)
 
 setup-venv: ## Create virtual environment with dev tools

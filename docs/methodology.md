@@ -30,21 +30,19 @@ Where possible, all agents operate under identical conditions:
 - **Network access:** Unrestricted (agents may install packages, access docs)
 - **Time limit:** Soft limit per challenge level (see challenge descriptions)
 
-Where agents require specific environments (e.g., Cursor requires VS Code, CLI agents require terminal), we document the setup and any deviations.
+All agents operate from the command line for reproducibility. IDE-integrated tools were excluded from this benchmark.
 
 ### Agent Configuration
 
 Each agent is configured with its default or recommended settings:
 
-- **Cursor:** Default Composer mode with Claude Sonnet or GPT-4
 - **Claude Code:** Default configuration, model selection by the tool
 - **Claude MPM:** PM agent with delegation to specialist agents
 - **Codex:** Default sandbox mode
 - **Gemini CLI:** Default configuration with Gemini 2.5 Pro
-- **Anti-Gravity:** Default VS Code extension settings
 - **Qwen + Aider:** Qwen 3 via local Ollama, Aider in architect mode
 - **DeepSeek + Aider:** DeepSeek V3 via local Ollama, Aider in architect mode
-- **Auggie:** Default IDE extension settings
+- **Auggie:** Default CLI configuration
 - **Warp AI:** Default Warp terminal Agent mode
 
 ## Prompt Delivery Method
@@ -78,8 +76,6 @@ Where available (API-based agents), we record:
 - Total output tokens
 - Number of API calls
 - Estimated cost
-
-For IDE-integrated agents (Cursor, Anti-Gravity), token counts are estimated from the agent's visible context and response lengths.
 
 For local model agents (Qwen, DeepSeek), we record inference time and estimated tokens from Ollama metrics.
 

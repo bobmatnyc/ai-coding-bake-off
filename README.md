@@ -17,9 +17,11 @@ But that experiment had limitations:
 - **Only 3 tasks** --- too small a sample to be definitive
 - **Tasks were small** --- FizzBuzz through async rate limiter (minutes, not hours)
 - **No architectural challenges** --- nothing tested system design or multi-file coordination
-- **Limited agent roster** --- missing Cursor, local models, and newer tools
+- **Limited agent roster** --- missing local models and newer tools
 
 This bake-off addresses all of those limitations with 5 challenges spanning 30 minutes to 8 hours, testing everything from basic code generation to full-stack application delivery.
+
+> **Why CLI-only?** All harnesses use command-line tools for reproducibility and fair comparison. IDE-integrated tools (Cursor, VS Code extensions) were excluded because their UX advantages make timing comparisons unfair and runs harder to reproduce.
 
 ## Overview
 
@@ -35,15 +37,13 @@ At Level 1 (a simple formatter), all agents perform similarly. By Level 5 (a ful
 
 | Agent | Type | Model(s) | Orchestration |
 |-------|------|----------|---------------|
-| **Cursor** | IDE-integrated | Claude/GPT-4 | Tab, Composer, multi-file |
 | **Claude Code** | CLI agent | Claude Opus/Sonnet | Single agent, tool use |
 | **Claude MPM** | Multi-agent | Claude Opus/Sonnet | PM + specialist agents |
 | **Codex** | CLI agent | OpenAI Codex | Single agent, sandboxed |
 | **Gemini CLI** | CLI agent | Gemini 2.5 Pro | Single agent, tool use |
-| **Anti-Gravity** | VS Code extension | Claude/GPT | Agentic IDE extension |
 | **Qwen + Aider** | Terminal + editor | Qwen 3 (local) | Aider orchestration |
 | **DeepSeek + Aider** | Terminal + editor | DeepSeek V3 (local) | Aider orchestration |
-| **Auggie** | IDE-integrated | Proprietary | Agentic IDE extension |
+| **Auggie** | CLI agent | Proprietary | Agentic coding assistant |
 | **Warp AI** | AI-powered terminal | Warp's built-in AI (Claude-based) | Agent mode |
 
 ## The Challenges
