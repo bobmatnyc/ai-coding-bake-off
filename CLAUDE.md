@@ -2,6 +2,23 @@
 
 Benchmark suite testing 9 AI coding agents across 5 Python challenges of increasing complexity. Sequel to ["Orchestration Beats Raw Power"](https://hyperdev.matsuoka.com/p/orchestration-beats-raw-power) (Dec 2025).
 
+## Quick Start — One-Line Prompts
+
+Each challenge can be launched with a single prompt. The framework handles everything else.
+
+| Command | What Happens |
+|---------|-------------|
+| `solve level 1` | Read prompt → build solution in agents/claude-mpm/level-1/ → run tests → record metadata |
+| `solve level 2` | Same pipeline, proper Python packaging with pyproject.toml |
+| `solve level 3` | Research → plan architecture → implement → Docker → test |
+| `solve level 4` | Full pipeline: Research → Architecture → Implement → QA → Document |
+| `solve level 5` | Full-stack: Research → Architecture → Backend → Frontend → Docker → CI → QA → Docs |
+| `evaluate level 1` | Run automated scoring + blind cross-review of all agents' level-1 solutions |
+| `evaluate all` | Full evaluation across all levels and agents, generate comparison report |
+| `run bake-off` | Execute all 5 levels sequentially as Claude MPM, recording everything |
+
+The CLAUDE.md, prompts/, and .claude-mpm/ configs contain all context needed. No additional instructions required.
+
 ## Critical Rules
 
 - `challenges/` is **READ-ONLY** during competition — never modify problem files or test suites
@@ -74,6 +91,25 @@ python scripts/generate_report.py                # Generate comparison report
 - pytest for testing, ruff for linting, mypy for type checking
 - Docstrings on modules, classes, and public functions
 - Every solution includes README.md with setup and usage
+
+## Memory & Search Integration (Claude MPM)
+
+This project uses kuzu-memory and mcp-vector-search when run under Claude MPM.
+
+### kuzu-memory
+- Store architecture decisions, patterns discovered, and cross-level learnings
+- Recall context from previous levels when starting a new one
+- Track evaluation findings and scoring patterns
+
+### mcp-vector-search
+- Semantic search across all challenge descriptions and solutions
+- Find similar patterns across agent solutions during evaluation
+- Index automatically — do not manually trigger reindex
+
+### Usage During Competition
+- Before starting a level: `kuzu_recall` for patterns from previous levels
+- After completing a level: `kuzu_learn` key decisions and architecture choices
+- During evaluation: `search_code` to compare solutions semantically
 
 ## Metadata Format
 

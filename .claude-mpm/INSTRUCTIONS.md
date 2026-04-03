@@ -25,3 +25,23 @@ For each challenge level, use this MPM delegation pattern:
 - Record start_time when first reading the prompt
 - Record end_time when all deliverables are complete and tests pass
 - Token estimates should include all agent delegations
+
+## MCP Tools Available
+
+### kuzu-memory
+- `kuzu_recall` — Query memories before starting each level (what worked in previous levels)
+- `kuzu_learn` — Store architecture decisions, timing observations, quality patterns
+- `kuzu_remember` — Store critical findings immediately (evaluation scores, blockers)
+- `kuzu_enhance` — Enhance prompts with project context
+
+### mcp-vector-search
+- `search_code` — Semantic search across challenges, solutions, and evaluations
+- `search_similar` — Find similar code patterns across agent solutions
+- `search_context` — Get surrounding context for matches
+- `analyze_project` — Project-wide metrics and analysis
+
+### When to Use
+- **Starting a level**: Recall what worked in previous levels, search similar problems
+- **During implementation**: Search challenge fixtures and test expectations
+- **During evaluation**: Compare solutions semantically, find patterns across agents
+- **Writing the article**: Search for interesting findings, recall key metrics

@@ -1,4 +1,38 @@
-# Bake-Off Workflow
+# Bake-Off Workflows
+
+## One-Line Prompt Workflows
+
+### "solve level {N}" — Competition Mode
+1. PM reads `prompts/level-{N}-prompt.md` and `challenges/level-{N}-*/PROBLEM.md`
+2. PM checks kuzu-memory for patterns from previous levels
+3. PM delegates per level complexity:
+   - Level 1-2: Python Engineer directly
+   - Level 3: Research → Python Engineer → QA  
+   - Level 4-5: Research → Code Analysis → Python Engineer → QA → Documentation
+4. Engineer builds solution in `agents/claude-mpm/level-{N}/`
+5. QA runs provided test suite + agent's tests + coverage
+6. PM records metadata.json with timing and token data
+7. PM stores learnings in kuzu-memory
+
+### "evaluate level {N}" — Evaluation Mode
+1. PM reads `evaluation/cross_review/review_prompt.md`
+2. PM delegates to Local Ops: run automated evaluation scripts
+3. PM delegates cross-review to Research (analyze code) + Engineer (review architecture)
+4. Results written to `evaluation/results/`
+
+### "evaluate all" — Full Evaluation
+1. Run "evaluate level N" for N=1..5
+2. Run `scripts/collect_metrics.py` and `scripts/generate_report.py`
+3. Store summary in kuzu-memory
+
+### "run bake-off" — Full Competition
+1. Run "solve level N" for N=1..5 sequentially
+2. Run "evaluate all"
+3. Generate article draft from `docs/article-outline.md`
+
+---
+
+# Detailed Workflow
 
 ## Competition Workflow (per level)
 
