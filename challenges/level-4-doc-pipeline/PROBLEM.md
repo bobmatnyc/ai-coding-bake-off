@@ -54,16 +54,16 @@ GET    /api/stats                      # Pipeline statistics (docs processed, av
 
 ```bash
 # Reprocess a document
-python -m doc_pipeline reprocess --id 123
+python3 -m doc_pipeline reprocess --id 123
 
 # Rebuild the search index
-python -m doc_pipeline reindex
+python3 -m doc_pipeline reindex
 
 # Show pipeline statistics
-python -m doc_pipeline stats
+python3 -m doc_pipeline stats
 
 # Watch a directory for new files
-python -m doc_pipeline watch /path/to/incoming/
+python3 -m doc_pipeline watch /path/to/incoming/
 ```
 
 ### Architecture Requirements

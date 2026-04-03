@@ -37,7 +37,7 @@ Record your timing in `harnesses/{your-agent-name}/output/level-2/metadata.json`
 ## Delivery Checklist
 
 - [ ] Properly packaged Python project with `pyproject.toml`
-- [ ] CLI works: `python -m git_analyzer [path] [--format json] [--since N] [--author NAME]`
+- [ ] CLI works: `python3 -m git_analyzer [path] [--format json] [--since N] [--author NAME]`
 - [ ] All provided tests pass: run `pytest challenges/level-2-git-analyzer/test_suite/ -v`
 - [ ] Per-author statistics (commits, lines, active days)
 - [ ] Commit pattern analysis (time-of-day, weekend, frequency)

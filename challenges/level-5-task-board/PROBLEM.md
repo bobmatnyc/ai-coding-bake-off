@@ -99,9 +99,9 @@ The frontend must support:
 docker-compose up
 
 # Seed the database
-docker-compose exec app python manage.py seed
+docker-compose exec app python3 manage.py seed
 # or
-docker-compose exec app python -m task_board seed
+docker-compose exec app python3 -m task_board seed
 
 # Run tests
 docker-compose exec app pytest

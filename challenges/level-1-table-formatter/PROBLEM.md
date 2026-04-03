@@ -27,7 +27,7 @@ The tool must handle real-world CSV data gracefully: mixed data types, unicode c
 The tool should run as:
 
 ```bash
-python -m table_formatter input.csv
+python3 -m table_formatter input.csv
 ```
 
 With optional flags:
@@ -71,7 +71,7 @@ Gadget Y,,12340,North America
 ## Deliverables
 
 1. A `table_formatter/` package (or single module) with the core logic
-2. CLI entry point via `python -m table_formatter`
+2. CLI entry point via `python3 -m table_formatter`
 3. At least 5 additional tests beyond the provided test suite
 4. A brief README.md explaining usage
 

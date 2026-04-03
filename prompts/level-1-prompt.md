@@ -41,7 +41,7 @@ Update `wall_clock_minutes` and `estimated_tokens` when complete.
 Before declaring this challenge complete, ensure you have:
 
 - [ ] A working `table_formatter` module/package
-- [ ] CLI entry point: `python -m table_formatter input.csv` works
+- [ ] CLI entry point: `python3 -m table_formatter input.csv` works
 - [ ] All provided tests pass: run `pytest challenges/level-1-table-formatter/test_suite/ -v`
 - [ ] At least 5 additional tests you wrote
 - [ ] `--sort`, `--filter`, `--output`, and `--max-width` flags implemented

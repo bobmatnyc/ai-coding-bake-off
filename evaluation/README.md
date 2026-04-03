@@ -11,16 +11,16 @@ Solutions are evaluated through two mechanisms:
 
 ```bash
 # Run all test suites against all agent solutions
-python evaluation/automated/run_tests.py
+python3 evaluation/automated/run_tests.py
 
 # Run code quality checks
-python evaluation/automated/code_quality.py
+python3 evaluation/automated/code_quality.py
 
 # Run coverage analysis
-python evaluation/automated/coverage_check.py
+python3 evaluation/automated/coverage_check.py
 
 # Collect timing metrics from metadata.json files
-python evaluation/automated/metrics.py
+python3 evaluation/automated/metrics.py
 ```
 
 ## Cross-Agent Review

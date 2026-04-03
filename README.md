@@ -74,16 +74,16 @@ Weights shift by level: correctness dominates at L1-2, architecture dominates at
 
 ```bash
 # Run all test suites against all agent solutions
-python evaluation/automated/run_tests.py
+python3 evaluation/automated/run_tests.py
 
 # Run code quality checks (ruff, mypy)
-python evaluation/automated/code_quality.py
+python3 evaluation/automated/code_quality.py
 
 # Generate coverage reports
-python evaluation/automated/coverage_check.py
+python3 evaluation/automated/coverage_check.py
 
 # Collect timing and token metrics
-python evaluation/automated/metrics.py
+python3 evaluation/automated/metrics.py
 ```
 
 ### Cross-Agent Review
@@ -107,7 +107,7 @@ git clone https://github.com/your-org/ai-coding-bake-off.git
 cd ai-coding-bake-off
 
 # Create virtual environment
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 
 # Install dev dependencies
@@ -124,10 +124,10 @@ pip install -e ".[dev]"
 #    (Each agent reads from prompts/level-X-prompt.md)
 
 # 3. After all agents complete, run evaluation
-python scripts/collect_metrics.py
+python3 scripts/collect_metrics.py
 
 # 4. Generate comparison report
-python scripts/generate_report.py
+python3 scripts/generate_report.py
 ```
 
 ## Results

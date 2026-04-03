@@ -39,19 +39,19 @@ Create a CLI tool that analyzes a git repository's commit history and produces i
 
 ```bash
 # Analyze current directory
-python -m git_analyzer
+python3 -m git_analyzer
 
 # Analyze specific repo
-python -m git_analyzer /path/to/repo
+python3 -m git_analyzer /path/to/repo
 
 # Output as JSON
-python -m git_analyzer --format json
+python3 -m git_analyzer --format json
 
 # Limit analysis to last N days
-python -m git_analyzer --since 90
+python3 -m git_analyzer --since 90
 
 # Filter by author
-python -m git_analyzer --author "Alice"
+python3 -m git_analyzer --author "Alice"
 ```
 
 ### Output Format
@@ -109,7 +109,7 @@ git_analyzer/
 ## Deliverables
 
 1. A properly packaged Python project with `pyproject.toml`
-2. CLI tool runnable via `python -m git_analyzer`
+2. CLI tool runnable via `python3 -m git_analyzer`
 3. Terminal and JSON output formats
 4. Tests with good coverage
 5. README with installation and usage instructions

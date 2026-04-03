@@ -20,21 +20,21 @@ test-all-levels: ## Run all provided tests for an agent: make test-all-levels AG
 # --- Evaluation ---
 
 eval-tests: ## Run automated test evaluation across all agents
-	python evaluation/automated/run_tests.py
+	python3 evaluation/automated/run_tests.py
 
 eval-quality: ## Run code quality checks across all agents
-	python evaluation/automated/code_quality.py
+	python3 evaluation/automated/code_quality.py
 
 eval-coverage: ## Run coverage analysis across all agents
-	python evaluation/automated/coverage_check.py
+	python3 evaluation/automated/coverage_check.py
 
 eval-all: eval-tests eval-quality eval-coverage ## Run all automated evaluations
 
 report: ## Generate comparison report
-	python scripts/generate_report.py
+	python3 scripts/generate_report.py
 
 metrics: ## Collect all metrics
-	python scripts/collect_metrics.py
+	python3 scripts/collect_metrics.py
 
 # --- Setup ---
 
@@ -42,7 +42,7 @@ setup-agent: ## Set up workspace for an agent: make setup-agent AGENT=claude-cod
 	bash scripts/setup_agent_workspace.sh $(AGENT)
 
 setup-venv: ## Create virtual environment with dev tools
-	python -m venv .venv
+	python3 -m venv .venv
 	.venv/bin/pip install pytest pytest-cov ruff mypy pylint
 
 clean: ## Remove __pycache__ and .pytest_cache
