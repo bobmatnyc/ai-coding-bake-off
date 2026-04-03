@@ -1,5 +1,8 @@
 # Aider configuration for Qwen harness
 model: ollama/qwen3
 architect: true
-auto-commits: false
+auto-commits: true
+yes-always: true
 map-tokens: 2048
+suggest-shell-commands: true
+auto-test: false
