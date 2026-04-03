@@ -1,15 +1,14 @@
 """WebSocket connection manager."""
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
-from typing import DefaultDict
+from typing import DefaultDict, List
 from collections import defaultdict
 import json
 
 router = APIRouter()
 
-
 class ConnectionManager:
     def __init__(self):
-        self.connections: DefaultDict[int, list[WebSocket]] = defaultdict(list)
+        self.connections: DefaultDict[int, List[WebSocket]] = defaultdict(list)
 
     async def connect(self, board_id: int, ws: WebSocket):
         await ws.accept()
@@ -20,20 +19,21 @@ class ConnectionManager:
             self.connections[board_id].remove(ws)
 
     async def broadcast(self, board_id: int, event: str, data: dict):
-        msg = json.dumps({"event": event, "data": data})
-        dead = []
-        for ws in list(self.connections[board_id]):
-            try:
-                await ws.send_text(msg)
-            except Exception:
-                dead.append(ws)
-        for ws in dead:
-            if ws in self.connections[board_id]:
-                self.connections[board_id].remove(ws)
-
+        if board_id in self.connections:
+            msg = json.dumps({"event": event, "data": data})
+            dead_connections = []
+            for ws in self.connections[board_id]:
+                try:
+                    await ws.send_text(msg)
+                except Exception:
+                    dead_connections.append(ws)
+            
+            # Remove dead connections
+            for ws in dead_connections:
+                if ws in self.connections[board_id]:
+                    self.connections[board_id].remove(ws)
 
 manager = ConnectionManager()
-
 
 @router.websocket("/ws/{board_id}")
 async def websocket_endpoint(board_id: int, websocket: WebSocket):
@@ -43,3 +43,6 @@ async def websocket_endpoint(board_id: int, websocket: WebSocket):
             await websocket.receive_text()
     except WebSocketDisconnect:
         manager.disconnect(board_id, websocket)
+```
+
+harnesses/claude-mpm/output/level-5/requirements.txt

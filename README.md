@@ -1,163 +1,165 @@
-# AI Coding Agent Bake-Off: Benchmarking the Future of Software Engineering
+# Team Task Board
 
-> A follow-up to "Orchestration Beats Raw Power" --- measuring how AI coding agents perform across challenges of increasing complexity.
+A complete team task management application with real-time updates, authentication, and a REST API backend.
 
-**Author:** Bob Matsuoka, CTO @ Duetto  
-**Date:** April 2026  
-**Status:** DRAFT
+## Features
 
----
+- JWT-based authentication (register, login, refresh)
+- Protected endpoints requiring valid token
+- Role-based access: admin and member roles
+- Task management with CRUD operations
+- Kanban boards with columns
+- Activity logging for all task mutations
+- Real-time WebSocket updates
+- PostgreSQL database with migrations
+- Docker Compose for easy deployment
 
-## Background: The Original Experiment
-
-In December 2025, we published ["Orchestration Beats Raw Power"](https://hyperdev.matsuoka.com/p/orchestration-beats-raw-power) --- a benchmark of five AI coding systems on three Python tasks. The key finding: **Claude MPM scored 96.2% while Gemini CLI scored 44.3%**, despite near-identical SWE-bench scores. The 52-point performance gap was invisible to industry benchmarks.
-
-But that experiment had limitations:
-
-- **Only 3 tasks** --- too small a sample to be definitive
-- **Tasks were small** --- FizzBuzz through async rate limiter (minutes, not hours)
-- **No architectural challenges** --- nothing tested system design or multi-file coordination
-- **Limited agent roster** --- missing local models and newer tools
-
-This bake-off addresses all of those limitations with 5 challenges spanning 30 minutes to 8 hours, testing everything from basic code generation to full-stack application delivery.
-
-> **Why CLI-only?** All harnesses use command-line tools for reproducibility and fair comparison. IDE-integrated tools (Cursor, VS Code extensions) were excluded because their UX advantages make timing comparisons unfair and runs harder to reproduce.
-
-## Overview
-
-This benchmark suite tests AI coding agents across five Python challenges of increasing complexity. Each agent attempts the same problems independently, and then cross-evaluates other agents' solutions. The goal is to produce a rigorous, reproducible comparison of today's leading AI coding tools.
-
-## Thesis
-
-**Orchestrated multi-agent systems outperform single-model approaches, and the advantage grows with problem complexity.**
-
-At Level 1 (a simple formatter), all agents perform similarly. By Level 5 (a full-stack application), the gap between orchestrated and single-model agents becomes a chasm. This benchmark measures exactly where the crossover happens and quantifies the cost-benefit tradeoff.
-
-## The Agents
-
-| Agent | Type | Model(s) | Orchestration |
-|-------|------|----------|---------------|
-| **Claude Code** | CLI agent | Claude Opus/Sonnet | Single agent, tool use |
-| **Claude MPM** | Multi-agent | Claude Opus/Sonnet | PM + specialist agents |
-| **Codex** | CLI agent | OpenAI Codex | Single agent, sandboxed |
-| **Gemini CLI** | CLI agent | Gemini 2.5 Pro | Single agent, tool use |
-| **Qwen + Aider** | Terminal + editor | Qwen 3 (local) | Aider orchestration |
-| **DeepSeek + Aider** | Terminal + editor | DeepSeek V3 (local) | Aider orchestration |
-| **Auggie** | CLI agent | Proprietary | Agentic coding assistant |
-| **Warp AI** | AI-powered terminal | Warp's built-in AI (Claude-based) | Agent mode |
-
-## The Challenges
-
-| Level | Challenge | Time Budget | Complexity | Key Evaluation Focus |
-|-------|-----------|-------------|------------|---------------------|
-| 1 | Markdown Table Formatter | ~30 min | Low | Correctness, code quality |
-| 2 | Git Log Analyzer | ~1 hr | Low-Medium | Project structure, packaging |
-| 3 | Weather Alerting Service | ~2 hr | Medium | API integration, architecture |
-| 4 | Document Processing Pipeline | ~3-4 hr | High | Extensibility, design patterns |
-| 5 | Team Task Board | ~6-8 hr | Very High | Full-stack, real-time, DevOps |
-
-## Evaluation Framework
-
-Each solution is scored on seven dimensions (1-5 scale):
-
-1. **Correctness** --- Does it work? Does it pass the test suite?
-2. **Code Quality** --- Clean code, type hints, linting compliance
-3. **Architecture** --- Appropriate patterns, separation of concerns
-4. **Testing** --- Agent-written tests, coverage, edge cases
-5. **Error Handling** --- Graceful failures, edge case coverage
-6. **Documentation** --- README, docstrings, setup instructions
-7. **Bonus** --- Level-specific criteria (packaging, Docker, extensibility, real-time)
-
-Weights shift by level: correctness dominates at L1-2, architecture dominates at L4-5.
-
-### Automated Evaluation
-
-```bash
-# Run all test suites against all agent solutions
-python3 evaluation/automated/run_tests.py
-
-# Run code quality checks (ruff, mypy)
-python3 evaluation/automated/code_quality.py
-
-# Generate coverage reports
-python3 evaluation/automated/coverage_check.py
-
-# Collect timing and token metrics
-python3 evaluation/automated/metrics.py
-```
-
-### Cross-Agent Review
-
-Each agent reviews two other agents' solutions using a standardized prompt and rubric. This produces blind peer-review scores in addition to automated metrics.
-
-## How to Run
-
-### Prerequisites
+## Requirements
 
 - Python 3.12+
-- Docker and Docker Compose (for Level 3-5)
-- Git
-- The agent tools you want to benchmark
+- Docker and Docker Compose
+- PostgreSQL (via Docker)
 
-### Setup
+## Setup
 
-```bash
-# Clone the repository
-git clone https://github.com/your-org/ai-coding-bake-off.git
-cd ai-coding-bake-off
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   cd task-board
+   ```
 
-# Create virtual environment
-python3 -m venv .venv
-source .venv/bin/activate
+2. Start the application with Docker Compose:
+   ```
+   docker-compose up
+   ```
 
-# Install dev dependencies
-pip install -e ".[dev]"
+3. Seed the database:
+   ```
+   docker-compose exec app python -m task_board seed
+   ```
+
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login, receive JWT
+- `POST /api/auth/refresh` - Refresh token
+
+### Users
+- `GET /api/users/me` - Current user profile
+- `GET /api/users` - List users (admin only)
+
+### Boards
+- `POST /api/boards` - Create board
+- `GET /api/boards` - List boards
+- `GET /api/boards/{id}` - Get board with all columns and tasks
+- `PUT /api/boards/{id}` - Update board
+- `DELETE /api/boards/{id}` - Delete board (admin only)
+
+### Columns
+- `POST /api/boards/{id}/columns` - Add column to board
+- `PUT /api/columns/{id}` - Update column (name, position)
+- `DELETE /api/columns/{id}` - Delete column
+
+### Tasks
+- `POST /api/tasks` - Create task
+- `GET /api/tasks` - List tasks
+- `GET /api/tasks/{id}` - Get task details
+- `PUT /api/tasks/{id}` - Update task
+- `DELETE /api/tasks/{id}` - Delete task (admin only)
+- `PATCH /api/tasks/{id}/move` - Move task to different column/status
+
+### Activity
+- `GET /api/activity` - Recent activity across all boards
+- `GET /api/boards/{id}/activity` - Activity for a specific board
+
+## WebSocket
+
+- WebSocket endpoint at `/ws/{board_id}`
+- Broadcast task updates to all connected clients on a board
+- Events: `task.created`, `task.updated`, `task.moved`, `task.deleted`
+- Clients subscribe to specific board channels
+
+## Testing
+
+Run the tests with:
+```
+docker-compose exec app pytest
 ```
 
-### Running a Benchmark
+## Database Migrations
 
-```bash
-# 1. Set up a harness workspace
-./scripts/setup_agent_workspace.sh claude-code
-
-# 2. Give the agent the prompt for a level
-#    (Each agent reads from prompts/level-X-prompt.md)
-
-# 3. After all agents complete, run evaluation
-python3 scripts/collect_metrics.py
-
-# 4. Generate comparison report
-python3 scripts/generate_report.py
+Alembic is used for database migrations. To create a new migration:
+```
+docker-compose exec app alembic revision --autogenerate -m "Description of changes"
 ```
 
-## Results
-
-> Results will be published after all agent runs are complete. Check back for the full analysis.
-
-## Repository Structure
-
+To apply migrations:
 ```
-ai-coding-bake-off/
-├── challenges/          # Problem definitions (read-only for agents)
-├── harnesses/           # Each agent's workspace (instructions + output)
-├── prompts/             # Standardized prompts per challenge level
-├── evaluation/          # Automated scoring and cross-review framework
-├── scripts/             # Helper scripts for setup and reporting
-└── docs/                # Article materials and methodology
+docker-compose exec app alembic upgrade head
 ```
 
-## Contributing
+## Architecture
 
-This is a benchmark project --- contributions welcome for:
+The application follows a clean architecture pattern with:
 
-- Additional challenge levels
-- New agents to benchmark
-- Improved evaluation rubrics
-- Better automated scoring
-- Statistical analysis tools
+1. **FastAPI** for the web framework
+2. **SQLAlchemy** for ORM
+3. **PostgreSQL** for the database
+4. **JWT** for authentication
+5. **WebSockets** for real-time updates
+6. **Docker Compose** for containerization
 
-Please open an issue before submitting a PR to discuss your proposed contribution.
+## Project Structure
+
+```
+task_board/
+├── main.py              # Application entry point
+├── database.py          # Database configuration
+├── models.py            # SQLAlchemy models
+├── schemas.py           # Pydantic schemas
+├── auth.py              # Authentication utilities
+├── deps.py              # FastAPI dependencies
+├── websocket.py         # WebSocket connection manager
+├── routes/              # API route handlers
+│   ├── auth.py
+│   ├── users.py
+│   ├── boards.py
+│   ├── tasks.py
+│   ├── columns.py
+│   └── activity.py
+├── seed.py              # Database seeding script
+tests/                   # Test suite
+Dockerfile               # Docker configuration
+docker-compose.yml       # Docker Compose configuration
+requirements.txt         # Python dependencies
+alembic/                 # Database migrations
+.github/workflows/       # CI configuration
+```
+
+## Development
+
+To run the application locally without Docker:
+
+1. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+2. Set environment variables:
+   ```
+   export DATABASE_URL=sqlite:///./test.db
+   export SECRET_KEY=your-secret-key
+   ```
+
+3. Run the application:
+   ```
+   uvicorn task_board.main:app --reload
+   ```
 
 ## License
 
-MIT License. See individual agent solutions for their respective licenses.
+This project is licensed under the MIT License.
+```
+
+harnesses/claude-mpm/output/level-5/task_board/seed.py

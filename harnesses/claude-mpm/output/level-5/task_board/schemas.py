@@ -1,5 +1,5 @@
 """Pydantic request/response schemas."""
-from typing import Optional, List
+from typing import Optional, List, Dict, Any
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict
 
@@ -129,5 +129,8 @@ class ActivityResponse(BaseModel):
     user_id: int
     task_id: Optional[int] = None
     action: str
-    details: dict
+    details: Dict[str, Any]
     created_at: datetime
+```
+
+harnesses/claude-mpm/output/level-5/task_board/routes/users.py

@@ -1,7 +1,8 @@
 """Board routes: /api/boards/..."""
-from typing import List, Optional
+from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+import json
 
 from task_board.database import get_db
 from task_board.models import Board, BoardColumn, Activity, User, Role
@@ -15,10 +16,8 @@ from task_board.schemas import (
     ColumnResponse,
     ActivityResponse,
 )
-from task_board.websocket import manager
 
 router = APIRouter()
-
 
 def _board_to_dict(board: Board) -> dict:
     return {
@@ -29,7 +28,6 @@ def _board_to_dict(board: Board) -> dict:
         "created_at": board.created_at.isoformat() if board.created_at else None,
         "columns": [_column_to_dict(c) for c in board.columns],
     }
-
 
 def _column_to_dict(col: BoardColumn) -> dict:
     return {
@@ -53,9 +51,8 @@ def _column_to_dict(col: BoardColumn) -> dict:
         ],
     }
 
-
 @router.post("", status_code=201)
-async def create_board(
+def create_board(
     data: CreateBoardRequest,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
@@ -83,17 +80,22 @@ async def create_board(
         board_id=board.id,
         user_id=current_user.id,
         action="created",
-        details={"board_name": board.name},
+        details=json.dumps({"board_name": board.name}),
     )
     db.add(activity)
 
     db.commit()
     db.refresh(board)
 
-    return {"id": board.id, "name": board.name, "description": board.description or ""}
+    return {
+        "id": board.id,
+        "name": board.name,
+        "description": board.description or "",
+        "created_by": board.created_by,
+        "created_at": board.created_at.isoformat() if board.created_at else None,
+    }
 
-
-@router.get("")
+@router.get("", response_model=List[BoardListResponse])
 def list_boards(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
@@ -101,18 +103,17 @@ def list_boards(
     """List all boards."""
     boards = db.query(Board).all()
     return [
-        {
-            "id": b.id,
-            "name": b.name,
-            "description": b.description or "",
-            "created_by": b.created_by,
-            "created_at": b.created_at.isoformat() if b.created_at else None,
-        }
+        BoardListResponse(
+            id=b.id,
+            name=b.name,
+            description=b.description or "",
+            created_by=b.created_by,
+            created_at=b.created_at,
+        )
         for b in boards
     ]
 
-
-@router.get("/{board_id}")
+@router.get("/{board_id}", response_model=BoardResponse)
 def get_board(
     board_id: int,
     current_user: User = Depends(get_current_user),
@@ -122,10 +123,38 @@ def get_board(
     board = db.get(Board, board_id)
     if not board:
         raise HTTPException(status_code=404, detail="Board not found")
-    return _board_to_dict(board)
+    return BoardResponse(
+        id=board.id,
+        name=board.name,
+        description=board.description or "",
+        created_by=board.created_by,
+        created_at=board.created_at,
+        columns=[
+            ColumnResponse(
+                id=c.id,
+                board_id=c.board_id,
+                name=c.name,
+                position=c.position,
+                tasks=[
+                    {
+                        "id": t.id,
+                        "title": t.title,
+                        "description": t.description or "",
+                        "column_id": t.column_id,
+                        "assignee_id": t.assignee_id,
+                        "priority": t.priority.value if t.priority else "medium",
+                        "created_by": t.created_by,
+                        "created_at": t.created_at,
+                        "updated_at": t.updated_at,
+                    }
+                    for t in c.tasks
+                ]
+            )
+            for c in board.columns
+        ]
+    )
 
-
-@router.put("/{board_id}")
+@router.put("/{board_id}", response_model=BoardListResponse)
 def update_board(
     board_id: int,
     data: UpdateBoardRequest,
@@ -142,8 +171,13 @@ def update_board(
         board.description = data.description
     db.commit()
     db.refresh(board)
-    return {"id": board.id, "name": board.name, "description": board.description or ""}
-
+    return BoardListResponse(
+        id=board.id,
+        name=board.name,
+        description=board.description or "",
+        created_by=board.created_by,
+        created_at=board.created_at,
+    )
 
 @router.delete("/{board_id}", status_code=204)
 def delete_board(
@@ -160,7 +194,6 @@ def delete_board(
     db.delete(board)
     db.commit()
 
-
 @router.post("/{board_id}/columns", status_code=201)
 def add_column(
     board_id: int,
@@ -176,10 +209,14 @@ def add_column(
     db.add(col)
     db.commit()
     db.refresh(col)
-    return {"id": col.id, "board_id": col.board_id, "name": col.name, "position": col.position}
+    return {
+        "id": col.id,
+        "board_id": col.board_id,
+        "name": col.name,
+        "position": col.position,
+    }
 
-
-@router.get("/{board_id}/activity")
+@router.get("/{board_id}/activity", response_model=List[ActivityResponse])
 def get_board_activity(
     board_id: int,
     current_user: User = Depends(get_current_user),
@@ -197,14 +234,17 @@ def get_board_activity(
         .all()
     )
     return [
-        {
-            "id": a.id,
-            "board_id": a.board_id,
-            "user_id": a.user_id,
-            "task_id": a.task_id,
-            "action": a.action,
-            "details": a.details or {},
-            "created_at": a.created_at.isoformat() if a.created_at else None,
-        }
+        ActivityResponse(
+            id=a.id,
+            board_id=a.board_id,
+            user_id=a.user_id,
+            task_id=a.task_id,
+            action=a.action,
+            details=json.loads(a.details) if a.details else {},
+            created_at=a.created_at,
+        )
         for a in activities
     ]
+```
+
+harnesses/claude-mpm/output/level-5/task_board/routes/tasks.py
