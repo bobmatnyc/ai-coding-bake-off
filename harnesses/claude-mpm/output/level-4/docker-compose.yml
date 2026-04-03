@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./doc_pipeline:/app/doc_pipeline
+    environment:
+      - DOC_PIPELINE_DB_PATH=/app/data/documents.db
+      - DOC_PIPELINE_LOG_LEVEL=info
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # Optional: run tests in isolated container
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["python", "-m", "pytest", "tests/", "-v", "--tb=short"]
+    volumes:
+      - ./tests:/app/tests
+      - ./doc_pipeline:/app/doc_pipeline
+    environment:
+      - DOC_PIPELINE_DB_PATH=:memory:
+    profiles:
+      - test
+
+volumes:
+  data:

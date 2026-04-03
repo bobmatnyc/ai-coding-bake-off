@@ -1,0 +1,53 @@
+{
+  "challenge": "level-5-task-board",
+  "agent": "claude-mpm",
+  "model": "claude-sonnet-4-6",
+  "framework": "fastapi",
+  "language": "python",
+  "python_version": "3.12",
+  "features": [
+    "jwt-authentication",
+    "websocket-realtime",
+    "kanban-board",
+    "activity-logging",
+    "role-based-access",
+    "htmx-frontend",
+    "sqlite-database",
+    "docker-support",
+    "github-actions-ci",
+    "comprehensive-tests"
+  ],
+  "dependencies": {
+    "fastapi": ">=0.111.0",
+    "uvicorn": ">=0.29.0",
+    "sqlalchemy": ">=2.0.0",
+    "python-jose": ">=3.3.0",
+    "passlib": ">=1.7.4",
+    "pydantic": ">=2.0.0"
+  },
+  "test_command": "pytest tests/ -v",
+  "run_command": "uvicorn task_board.app:app --reload",
+  "api_endpoints": [
+    "POST /api/auth/register",
+    "POST /api/auth/login",
+    "GET /api/users/me",
+    "GET /api/users",
+    "POST /api/boards",
+    "GET /api/boards",
+    "GET /api/boards/{id}",
+    "PUT /api/boards/{id}",
+    "DELETE /api/boards/{id}",
+    "POST /api/boards/{id}/columns",
+    "GET /api/boards/{id}/activity",
+    "PUT /api/columns/{id}",
+    "DELETE /api/columns/{id}",
+    "POST /api/tasks",
+    "GET /api/tasks",
+    "GET /api/tasks/{id}",
+    "PUT /api/tasks/{id}",
+    "DELETE /api/tasks/{id}",
+    "PATCH /api/tasks/{id}/move",
+    "GET /api/activity",
+    "WS /ws/{board_id}"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "agent": "claude-mpm",
+  "model": "claude-sonnet-4-6",
+  "level": 2,
+  "challenge": "git-analyzer",
+  "timestamp": "2025-04-03T00:00:00Z",
+  "description": "Production-quality Python CLI tool that analyzes git repository commit history and produces insightful metrics.",
+  "features": [
+    "Parse git log --stat output with regex state machine",
+    "Author statistics: commits, insertions, deletions, active days, first/last commit",
+    "Bus factor calculation (minimum contributors owning 50% of changes)",
+    "Commit patterns: weekday/weekend, time-of-day distribution",
+    "Longest consecutive commit streak",
+    "Terminal output with ASCII progress bars",
+    "JSON output with datetime serialization",
+    "CLI with argparse: repo path, --format, --since, --author"
+  ],
+  "structure": {
+    "src_layout": true,
+    "package": "git_analyzer",
+    "entry_point": "git_analyzer.__main__:main"
+  }
+}

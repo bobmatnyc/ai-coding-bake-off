@@ -1,0 +1,7 @@
+{
+  "include": ["doc_pipeline", "tests"],
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "standard",
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none"
+}

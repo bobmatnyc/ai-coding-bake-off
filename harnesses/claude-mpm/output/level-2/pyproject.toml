@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "setuptools-scm"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "git-analyzer"
+version = "1.0.0"
+description = "Analyze a git repository's commit history and produce insightful metrics."
+authors = [{ name = "claude-mpm" }]
+requires-python = ">=3.12"
+license = { text = "MIT" }
+readme = "README.md"
+
+[project.scripts]
+git-analyzer = "git_analyzer.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-v"
+
+[tool.mypy]
+strict = true
+python_version = "3.12"

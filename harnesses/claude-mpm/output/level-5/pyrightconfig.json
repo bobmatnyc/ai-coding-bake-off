@@ -1,0 +1,11 @@
+{
+  "include": ["task_board", "tests"],
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "standard",
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "reportUnusedParameter": "none",
+  "reportGeneralTypeIssues": "none",
+  "reportArgumentType": "none",
+  "reportAttributeAccessIssue": "none"
+}

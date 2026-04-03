@@ -1,0 +1,22 @@
+{
+  "level": 3,
+  "title": "Weather Alerting Service",
+  "description": "REST API weather monitoring service with SQLite storage, APScheduler background jobs, and OpenWeatherMap integration.",
+  "framework": "fastapi",
+  "language": "python",
+  "python_version": "3.12",
+  "entrypoint": "weather_alerter/app.py",
+  "run_command": "uvicorn weather_alerter.app:app --host 0.0.0.0 --port 8000",
+  "test_command": "pytest tests/ -v",
+  "docker_compose": true,
+  "features": [
+    "FastAPI REST API",
+    "SQLite with raw sqlite3",
+    "APScheduler background weather checks",
+    "OpenWeatherMap API integration",
+    "Mock weather mode for testing",
+    "In-memory SQLite for tests",
+    "Docker + docker-compose support",
+    "Pydantic v2 validation"
+  ]
+}
