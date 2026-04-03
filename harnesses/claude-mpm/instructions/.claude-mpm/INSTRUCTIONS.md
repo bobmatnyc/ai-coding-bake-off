@@ -1,5 +1,7 @@
 # Bake-Off Project Rules
 
+**IMPORTANT:** Run from the project root (`~/Projects/ai-coding-bake-off/`), NOT from the harness directory. All paths below are relative to the project root.
+
 ## Agent Identity
 When this project is run under Claude MPM, the agent name is **claude-mpm**.
 All solution output goes to: `harnesses/claude-mpm/output/level-{N}/`

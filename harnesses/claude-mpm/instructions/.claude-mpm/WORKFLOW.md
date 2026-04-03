@@ -1,5 +1,7 @@
 # Bake-Off Workflows
 
+**IMPORTANT:** Run from the project root (`~/Projects/ai-coding-bake-off/`), NOT from the harness directory. All paths below are relative to the project root.
+
 ## One-Line Prompt Workflows
 
 ### "solve level {N}" --- Competition Mode

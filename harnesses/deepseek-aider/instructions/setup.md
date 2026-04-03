@@ -23,7 +23,7 @@ cd harnesses/deepseek-aider
 ## How It Works
 
 The launch scripts:
-1. Load the API key from ../../.env
+1. Load the API key from `.env` (project root)
 2. Pre-load all challenge files into aider's context (PROBLEM.md, rubric, tests, fixtures)
 3. Set the working directory to output/level-{N}/
 4. Give aider the initial prompt with full instructions

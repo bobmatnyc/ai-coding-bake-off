@@ -2,6 +2,8 @@
 
 You are **warp**, one of 8 AI coding agents competing in a benchmark. You will solve 5 Python challenges of increasing complexity, then review other agents' solutions.
 
+**IMPORTANT:** Run from the project root (`~/Projects/ai-coding-bake-off/`), NOT from the harness directory. All paths below are relative to the project root.
+
 ## Setup
 
 ### Prerequisites
@@ -29,13 +31,13 @@ Work through all 5 challenges in order. Each level is a self-contained Python pr
 | 5 | Team Task Board | ~6-8 hr | Full-stack app with auth, WebSocket, CI |
 
 **For each level:**
-1. Read the prompt: `../../prompts/level-{N}-prompt.md`
-2. Read the problem: `../../challenges/level-{N}-*/PROBLEM.md`
-3. Read the rubric (know what you're scored on): `../../challenges/level-{N}-*/evaluation/rubric.md`
-4. Build your solution in: `../output/level-{N}/`
-5. Run the provided test suite: `pytest ../../challenges/level-{N}-*/test_suite/ -v`
+1. Read the prompt: `prompts/level-{N}-prompt.md`
+2. Read the problem: `challenges/level-{N}-*/PROBLEM.md`
+3. Read the rubric (know what you're scored on): `challenges/level-{N}-*/evaluation/rubric.md`
+4. Build your solution in: `harnesses/warp/output/level-{N}/`
+5. Run the provided test suite: `pytest challenges/level-{N}-*/test_suite/ -v`
 6. Write additional tests in your solution
-7. Record timing in: `../output/level-{N}/metadata.json`
+7. Record timing in: `harnesses/warp/output/level-{N}/metadata.json`
 
 **Do NOT look at other harnesses' output directories during this phase.**
 
@@ -43,26 +45,26 @@ Work through all 5 challenges in order. Each level is a self-contained Python pr
 
 After completing all 5 levels, switch to evaluation mode. You will review other agents' solutions using a blind review protocol.
 
-1. Read the review protocol: `../../evaluation/cross_review/review_prompt.md`
+1. Read the review protocol: `evaluation/cross_review/review_prompt.md`
 2. For each level, for each other agent's solution:
-   a. Read the rubric: `../../challenges/level-{N}-*/evaluation/rubric.md`
-   b. Read the agent's solution in `../../harnesses/{other-agent}/output/level-{N}/`
+   a. Read the rubric: `challenges/level-{N}-*/evaluation/rubric.md`
+   b. Read the agent's solution in `harnesses/{other-agent}/output/level-{N}/`
    c. Score against the rubric (1-5 per dimension)
-   d. Write your review to `../../evaluation/results/warp-reviews-{other-agent}-level-{N}.md`
+   d. Write your review to `evaluation/results/warp-reviews-{other-agent}-level-{N}.md`
 3. Be objective --- score against the rubric, not against your own solution
 4. Solutions are evaluated blind where possible
 
-## Paths
+## Paths (all relative to project root)
 
 | What | Path |
 |------|------|
-| Challenges (READ-ONLY) | `../../challenges/level-{N}-*/PROBLEM.md` |
-| Prompts | `../../prompts/level-{N}-prompt.md` |
-| Rubrics | `../../challenges/level-{N}-*/evaluation/rubric.md` |
-| Your output | `../output/level-{N}/` |
-| Your metadata | `../output/level-{N}/metadata.json` |
-| Review protocol | `../../evaluation/cross_review/review_prompt.md` |
-| Your reviews | `../../evaluation/results/` |
+| Challenges (READ-ONLY) | `challenges/level-{N}-*/PROBLEM.md` |
+| Prompts | `prompts/level-{N}-prompt.md` |
+| Rubrics | `challenges/level-{N}-*/evaluation/rubric.md` |
+| Your output | `harnesses/warp/output/level-{N}/` |
+| Your metadata | `harnesses/warp/output/level-{N}/metadata.json` |
+| Review protocol | `evaluation/cross_review/review_prompt.md` |
+| Your reviews | `evaluation/results/` |
 
 ## Rules
 
@@ -74,7 +76,7 @@ After completing all 5 levels, switch to evaluation mode. You will review other 
 
 ## Metadata Format
 
-Record in `../output/level-{N}/metadata.json` after each level:
+Record in `harnesses/warp/output/level-{N}/metadata.json` after each level:
 
 ```json
 {

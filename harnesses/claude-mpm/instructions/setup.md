@@ -23,7 +23,7 @@ claude  # launches Claude Code with MPM
 > solve level 1
 ```
 
-The agent reads prompts from `../../prompts/level-{N}-prompt.md`, reads challenge definitions from `../../challenges/level-{N}-*/PROBLEM.md`, and writes solutions to `output/level-{N}/`.
+The agent reads prompts from `prompts/level-{N}-prompt.md`, reads challenge definitions from `challenges/level-{N}-*/PROBLEM.md`, and writes solutions to `harnesses/claude-mpm/output/level-{N}/`.
 
 ## Output
 
