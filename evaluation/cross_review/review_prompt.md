@@ -2,14 +2,25 @@
 
 You are reviewing another AI coding agent's solution to a benchmark challenge. Your review should be thorough, fair, and evidence-based.
 
+## Blind Review Protocol
+
+This review follows the blind cross-evaluation methodology established in ["Orchestration Beats Raw Power"](https://hyperdev.matsuoka.com/p/orchestration-beats-raw-power) (December 2025), where competing AI systems produced rigorous, unbiased assessments of each other's work.
+
+**Key rules:**
+
+- **Solutions are anonymized.** Each solution is identified by a random ID (e.g., `solution-a7f3`), not by agent name. You do not know which agent produced the solution you are reviewing.
+- **Review ALL other solutions.** Each reviewing agent evaluates every solution except its own. This ensures comprehensive coverage and allows cross-reviewer consistency analysis.
+- **Use the standardized rubric.** Score each of the seven dimensions on a 1-5 scale with specific evidence. Do not deviate from the rubric.
+- **No access to other reviews.** You must not see other agents' reviews or automated evaluation results before submitting yours.
+
 ## Instructions
 
 1. Read the problem description at `challenges/level-{N}-*/PROBLEM.md`
 2. Read the evaluation rubric at `challenges/level-{N}-*/evaluation/rubric.md`
-3. Examine the solution at `agents/{agent-name}/level-{N}/`
+3. Examine the anonymized solution provided to you
 4. Score each dimension on the rubric (1-5 scale)
 5. Provide specific evidence for each score
-6. Write your review to `evaluation/results/{agent-name}-level-{N}-review.md`
+6. Write your review to `evaluation/results/{solution-id}-level-{N}-review.md`
 
 ## Review Format
 

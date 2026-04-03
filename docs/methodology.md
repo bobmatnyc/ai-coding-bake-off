@@ -1,5 +1,23 @@
 # Methodology
 
+## Lessons from Round 1
+
+In December 2025, we published ["Orchestration Beats Raw Power"](https://hyperdev.matsuoka.com/p/orchestration-beats-raw-power) testing 5 AI coding systems on 3 Python tasks (FizzBuzz, LRU cache, async rate limiter). That experiment shaped this methodology in several ways:
+
+### What Worked --- Keeping It
+
+- **Blind cross-evaluation by competing AIs.** Having each AI system review competitors' anonymized solutions produced surprisingly rigorous and unbiased assessments. We retain this approach and expand it: every agent reviews ALL other solutions (not just two).
+- **Standardized prompts.** Giving each system the identical prompt file eliminated a major source of bias.
+- **Independent blind code reviews.** The original used competing AI systems as reviewers. The consistency of their evaluations validated the approach.
+
+### What We Changed
+
+- **Larger sample size.** Three tasks was too few to draw confident conclusions. This round uses 5 challenges, giving more data points and reducing the impact of any single lucky or unlucky outcome.
+- **Wider complexity range.** The original topped out at "medium" (async rate limiter). This round spans from trivial (30 min) to very high (6-8 hours), testing whether the orchestration advantage scales with complexity.
+- **Architecture and multi-file coordination.** The original tasks were all single-file. Levels 3-5 here require project structure, Docker configuration, API integration, and full-stack delivery --- the kind of work that separates tools from teammates.
+- **Systematic token and time tracking.** The original captured wall-clock time but token counts were inconsistent. This round standardizes metrics collection via `metadata.json` for every agent and every level.
+- **Separated "did it work" from "is it well-built."** The original used a single composite score. This round evaluates seven dimensions independently (correctness, code quality, architecture, testing, error handling, documentation, bonus) with weights that shift by challenge level.
+
 ## Agent Setup Procedures
 
 ### Environment Standardization
@@ -26,6 +44,7 @@ Each agent is configured with its default or recommended settings:
 - **Anti-Gravity:** Default VS Code extension settings
 - **Qwen + Aider:** Qwen 3 via local Ollama, Aider in architect mode
 - **DeepSeek + Aider:** DeepSeek V3 via local Ollama, Aider in architect mode
+- **Augment Code:** Default IDE extension settings
 
 ## Prompt Delivery Method
 

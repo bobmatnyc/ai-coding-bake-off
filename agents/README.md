@@ -14,6 +14,7 @@ Each subdirectory is a workspace for one AI coding agent. Solutions for each cha
 | `anti-gravity/` | Anti-Gravity | Agentic VS Code extension |
 | `qwen-aider/` | Qwen + Aider | Local Qwen 3 model via Aider |
 | `deepseek-aider/` | DeepSeek + Aider | Local DeepSeek V3 model via Aider |
+| `augment/` | Augment Code | Agentic IDE extension (scored 83.1% in Round 1) |
 
 ## Workspace Structure
 

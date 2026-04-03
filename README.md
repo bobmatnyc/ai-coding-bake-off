@@ -8,6 +8,19 @@
 
 ---
 
+## Background: The Original Experiment
+
+In December 2025, we published ["Orchestration Beats Raw Power"](https://hyperdev.matsuoka.com/p/orchestration-beats-raw-power) --- a benchmark of five AI coding systems on three Python tasks. The key finding: **Claude MPM scored 96.2% while Gemini CLI scored 44.3%**, despite near-identical SWE-bench scores. The 52-point performance gap was invisible to industry benchmarks.
+
+But that experiment had limitations:
+
+- **Only 3 tasks** --- too small a sample to be definitive
+- **Tasks were small** --- FizzBuzz through async rate limiter (minutes, not hours)
+- **No architectural challenges** --- nothing tested system design or multi-file coordination
+- **Limited agent roster** --- missing Cursor, local models, and newer tools
+
+This bake-off addresses all of those limitations with 5 challenges spanning 30 minutes to 8 hours, testing everything from basic code generation to full-stack application delivery.
+
 ## Overview
 
 This benchmark suite tests AI coding agents across five Python challenges of increasing complexity. Each agent attempts the same problems independently, and then cross-evaluates other agents' solutions. The goal is to produce a rigorous, reproducible comparison of today's leading AI coding tools.
@@ -30,6 +43,7 @@ At Level 1 (a simple formatter), all agents perform similarly. By Level 5 (a ful
 | **Anti-Gravity** | VS Code extension | Claude/GPT | Agentic IDE extension |
 | **Qwen + Aider** | Terminal + editor | Qwen 3 (local) | Aider orchestration |
 | **DeepSeek + Aider** | Terminal + editor | DeepSeek V3 (local) | Aider orchestration |
+| **Augment Code** | IDE-integrated | Proprietary | Agentic IDE extension |
 
 ## The Challenges
 

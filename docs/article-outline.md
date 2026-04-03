@@ -8,12 +8,15 @@
 
 ---
 
-## 1. Introduction (500 words)
+## 1. Introduction (600 words)
 
-- Hook: "We gave 8 AI coding agents the same 5 challenges. The results surprised us."
-- Link to original article "Orchestration Beats Raw Power"
+- Hook: "We gave 9 AI coding agents the same 5 challenges. The results surprised us."
+- Frame as sequel: In December 2025, ["Orchestration Beats Raw Power"](https://hyperdev.matsuoka.com/p/orchestration-beats-raw-power) tested 5 systems on 3 small Python tasks. MPM scored 96.2%, Gemini CLI scored 44.3% --- a 52-point gap invisible to SWE-bench.
+- But that experiment was small: 3 tasks, all under "medium" complexity, no architecture or multi-file coordination
+- This bake-off scales up the experiment: 5 challenges (30 min to 8 hours), 9 agents, complexity from trivial to full-stack
+- The original question stands: does orchestration beat raw power? Now we test it at scale.
 - Why we did this: the AI tooling landscape is exploding and CTOs need data, not hype
-- What this study covers: 8 agents, 5 challenges, blind cross-evaluation
+- What this study covers: 9 agents, 5 challenges, blind cross-evaluation
 - Preview of key finding: orchestration advantage grows with complexity
 
 ## 2. Methodology (600 words)
@@ -34,7 +37,9 @@ Profile each agent with:
 - Setup and configuration for this benchmark
 - Expected strengths and weaknesses
 
-Agents: Cursor, Claude Code, Claude MPM, Codex, Gemini CLI, Anti-Gravity, Qwen+Aider, DeepSeek+Aider
+Agents: Cursor, Claude Code, Claude MPM, Codex, Gemini CLI, Anti-Gravity, Augment Code, Qwen+Aider, DeepSeek+Aider
+
+Note: Five agents appeared in both studies (MPM, Claude vanilla, Codex, Gemini, Augment). Four are new to this round (Cursor, Anti-Gravity, Qwen+Aider, DeepSeek+Aider).
 
 ## 4. Results by Level (1,200 words)
 
@@ -86,16 +91,26 @@ Agents: Cursor, Claude Code, Claude MPM, Codex, Gemini CLI, Anti-Gravity, Qwen+A
 - Cost advantage analysis
 - Privacy and IP considerations for enterprise
 
-## 9. Conclusions (400 words)
+## 9. What Changed Since December 2025 (400 words)
+
+- New models: Claude 4 Opus/Sonnet (vs. Claude 3.5), Gemini 2.5 Pro (vs. 2.0), Codex latest (GPT-5.2+), DeepSeek V3, Qwen 3
+- New tools: Anti-Gravity (agentic VS Code extension), Cursor Composer improvements, Aider architect mode
+- Augment Code (Auggie) returns from the original study for direct comparison
+- Expanded methodology: 5 challenges vs. 3, complexity range from trivial to full-stack, systematic token/time tracking
+- Did the December findings hold? Compare returning agents' scores across both experiments
+- The SWE-bench gap: has the disconnect between benchmarks and real-world performance narrowed?
+
+## 10. Conclusions (400 words)
 
 - **Finding 1:** Orchestration advantage is real and grows with complexity
 - **Finding 2:** All agents handle simple tasks well; differentiation happens at L3+
 - **Finding 3:** Architecture quality is the biggest predictor of Level 4-5 success
 - **Finding 4:** Local models are viable for routine work
+- **Finding 5:** Compare across both experiments --- did December's results predict April's?
 - Recommendations for engineering leaders choosing AI tools
 - What this means for the future of software engineering
 
-## 10. Appendix
+## 11. Appendix
 
 - Full rubric scores for all agents across all levels
 - Raw data tables
