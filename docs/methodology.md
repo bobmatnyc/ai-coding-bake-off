@@ -44,7 +44,8 @@ Each agent is configured with its default or recommended settings:
 - **Anti-Gravity:** Default VS Code extension settings
 - **Qwen + Aider:** Qwen 3 via local Ollama, Aider in architect mode
 - **DeepSeek + Aider:** DeepSeek V3 via local Ollama, Aider in architect mode
-- **Augment Code:** Default IDE extension settings
+- **Auggie:** Default IDE extension settings
+- **Warp AI:** Default Warp terminal Agent mode
 
 ## Prompt Delivery Method
 

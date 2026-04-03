@@ -43,7 +43,8 @@ At Level 1 (a simple formatter), all agents perform similarly. By Level 5 (a ful
 | **Anti-Gravity** | VS Code extension | Claude/GPT | Agentic IDE extension |
 | **Qwen + Aider** | Terminal + editor | Qwen 3 (local) | Aider orchestration |
 | **DeepSeek + Aider** | Terminal + editor | DeepSeek V3 (local) | Aider orchestration |
-| **Augment Code** | IDE-integrated | Proprietary | Agentic IDE extension |
+| **Auggie** | IDE-integrated | Proprietary | Agentic IDE extension |
+| **Warp AI** | AI-powered terminal | Warp's built-in AI (Claude-based) | Agent mode |
 
 ## The Challenges
 

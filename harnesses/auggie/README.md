@@ -1,8 +1,8 @@
-# augment
+# auggie
 
 ## Agent Profile
 
-- **Name:** Augment Code (Auggie)
+- **Name:** Auggie (formerly Augment Code)
 - **Version:** (to be filled)
 - **Model(s):** Proprietary (Augment)
 - **Configuration:** (describe setup for reproducing)

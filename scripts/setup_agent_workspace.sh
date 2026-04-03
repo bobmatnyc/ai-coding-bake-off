@@ -12,7 +12,7 @@ set -euo pipefail
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <agent-name>"
     echo ""
-    echo "Available agents: cursor, claude-code, claude-mpm, codex, gemini, anti-gravity, augment, qwen-aider, deepseek-aider"
+    echo "Available agents: cursor, claude-code, claude-mpm, codex, gemini, anti-gravity, auggie, qwen-aider, deepseek-aider, warp"
     echo "Or provide a custom agent name."
     exit 1
 fi

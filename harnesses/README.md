@@ -30,9 +30,10 @@ harnesses/
 | `codex/` | Codex | `AGENTS.md` | OpenAI's CLI agent with sandboxed execution |
 | `gemini/` | Gemini CLI | `GEMINI.md` | Google's CLI agent with Gemini 2.5 Pro |
 | `anti-gravity/` | Anti-Gravity | `setup.md` | Agentic VS Code extension |
-| `augment/` | Augment Code | `setup.md` | Agentic IDE extension (scored 83.1% in Round 1) |
+| `auggie/` | Auggie (formerly Augment Code) | `setup.md` | Agentic IDE extension (scored 83.1% in Round 1) |
 | `qwen-aider/` | Qwen + Aider | `aider.conf.yml` | Local Qwen 3 model via Aider |
 | `deepseek-aider/` | DeepSeek + Aider | `aider.conf.yml` | Local DeepSeek V3 model via Aider |
+| `warp/` | Warp AI | `setup.md` | AI-powered terminal agent |
 
 ## Rules
 

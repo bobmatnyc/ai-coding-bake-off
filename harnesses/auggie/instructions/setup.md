@@ -1,4 +1,4 @@
-# Augment Code Harness Setup
+# Auggie Harness Setup
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@
 ## Running a Challenge
 
 1. Open `prompts/level-{N}-prompt.md`
-2. Instruct Augment: "Read this prompt and solve the challenge. Put your solution in harnesses/augment/output/level-{N}/"
+2. Instruct Auggie: "Read this prompt and solve the challenge. Put your solution in harnesses/auggie/output/level-{N}/"
 3. Let the agent work
 
 ## Output
@@ -30,4 +30,4 @@ Augment Code scored 83.1% in the December 2025 benchmark across 3 small Python t
 1. Clone the repository
 2. Install IDE with Augment Code extension
 3. Open the project and provide the prompt
-4. Results appear in `harnesses/augment/output/`
+4. Results appear in `harnesses/auggie/output/`
