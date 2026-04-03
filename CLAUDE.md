@@ -27,6 +27,7 @@ The CLAUDE.md, prompts/, and .claude-mpm/ configs contain all context needed. No
 - **Do NOT look at other agents' solutions** until cross-review phase
 - All solutions target Python 3.12+
 - Record timing/token metadata in `metadata.json` per solution
+- When run under Claude MPM, the agent name is `claude-mpm` — all solutions go in `agents/claude-mpm/level-{N}/`
 
 ## Project Structure
 

@@ -11,9 +11,14 @@ Create your solution in:
 agents/{your-agent-name}/level-4/
 ```
 
+For example:
+- Claude MPM → `agents/claude-mpm/level-4/`
+- Claude Code → `agents/claude-code/level-4/`
+- Cursor → `agents/cursor/level-4/`
+
 ## Time Tracking
 
-Record timing in `agents/{your-agent-name}/level-4/metadata.json`.
+Record timing in `agents/{your-agent-name}/level-4/metadata.json` (use `"agent": "claude-mpm"` when running as Claude MPM).
 
 ## Delivery Checklist
 
@@ -23,7 +28,7 @@ Record timing in `agents/{your-agent-name}/level-4/metadata.json`.
 - [ ] Admin CLI (reprocess, reindex, stats, watch)
 - [ ] Full-text search with relevance ranking
 - [ ] Architecture diagram (Mermaid, ASCII, or image)
-- [ ] All provided tests pass: `pytest challenges/level-4-doc-pipeline/test_suite/ -v`
+- [ ] All provided tests pass: run `pytest challenges/level-4-doc-pipeline/test_suite/ -v`
 - [ ] Comprehensive tests (per-stage unit tests, integration tests)
 - [ ] README documenting architecture decisions
 

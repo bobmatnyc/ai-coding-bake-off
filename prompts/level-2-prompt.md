@@ -11,6 +11,11 @@ Create your solution in:
 agents/{your-agent-name}/level-2/
 ```
 
+For example:
+- Claude MPM → `agents/claude-mpm/level-2/`
+- Claude Code → `agents/claude-code/level-2/`
+- Cursor → `agents/cursor/level-2/`
+
 This should be a properly structured Python project with `pyproject.toml`, `src/` layout, and `tests/`.
 
 ## Time Tracking
@@ -19,7 +24,7 @@ Record your timing in `agents/{your-agent-name}/level-2/metadata.json`:
 
 ```json
 {
-  "agent": "{your-agent-name}",
+  "agent": "claude-mpm",
   "level": 2,
   "start_time": "ISO-8601 timestamp when you begin",
   "end_time": "ISO-8601 timestamp when you finish",
@@ -33,7 +38,7 @@ Record your timing in `agents/{your-agent-name}/level-2/metadata.json`:
 
 - [ ] Properly packaged Python project with `pyproject.toml`
 - [ ] CLI works: `python -m git_analyzer [path] [--format json] [--since N] [--author NAME]`
-- [ ] All provided tests pass: `pytest challenges/level-2-git-analyzer/test_suite/ -v`
+- [ ] All provided tests pass: run `pytest challenges/level-2-git-analyzer/test_suite/ -v`
 - [ ] Per-author statistics (commits, lines, active days)
 - [ ] Commit pattern analysis (time-of-day, weekend, frequency)
 - [ ] Bus factor calculation

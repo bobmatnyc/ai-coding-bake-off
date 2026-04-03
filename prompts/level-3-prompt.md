@@ -11,9 +11,14 @@ Create your solution in:
 agents/{your-agent-name}/level-3/
 ```
 
+For example:
+- Claude MPM → `agents/claude-mpm/level-3/`
+- Claude Code → `agents/claude-code/level-3/`
+- Cursor → `agents/cursor/level-3/`
+
 ## Time Tracking
 
-Record timing in `agents/{your-agent-name}/level-3/metadata.json`.
+Record timing in `agents/{your-agent-name}/level-3/metadata.json` (use `"agent": "claude-mpm"` when running as Claude MPM).
 
 ## Delivery Checklist
 
@@ -23,7 +28,7 @@ Record timing in `agents/{your-agent-name}/level-3/metadata.json`.
 - [ ] Alert evaluation logic (threshold comparison)
 - [ ] Mock/demo mode for testing without API key
 - [ ] Dockerfile and docker-compose.yml
-- [ ] All provided tests pass: `pytest challenges/level-3-weather-alerter/test_suite/ -v`
+- [ ] All provided tests pass: run `pytest challenges/level-3-weather-alerter/test_suite/ -v`
 - [ ] Additional tests (API, alert logic, scheduler)
 - [ ] README with setup, API docs, Docker instructions
 

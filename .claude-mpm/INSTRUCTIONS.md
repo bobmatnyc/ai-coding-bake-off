@@ -1,5 +1,10 @@
 # Bake-Off Project Rules
 
+## Agent Identity
+When this project is run under Claude MPM, the agent name is **claude-mpm**.
+All solution output goes to: `agents/claude-mpm/level-{N}/`
+All metadata files: `agents/claude-mpm/level-{N}/metadata.json`
+
 ## Competition Mode
 When working on a challenge level (prompted with "solve level X" or "work on level X"):
 - You are competing as the Claude MPM agent

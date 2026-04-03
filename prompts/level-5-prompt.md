@@ -11,9 +11,14 @@ Create your solution in:
 agents/{your-agent-name}/level-5/
 ```
 
+For example:
+- Claude MPM → `agents/claude-mpm/level-5/`
+- Claude Code → `agents/claude-code/level-5/`
+- Cursor → `agents/cursor/level-5/`
+
 ## Time Tracking
 
-Record timing in `agents/{your-agent-name}/level-5/metadata.json`.
+Record timing in `agents/{your-agent-name}/level-5/metadata.json` (use `"agent": "claude-mpm"` when running as Claude MPM).
 
 ## Delivery Checklist
 
@@ -27,7 +32,7 @@ Record timing in `agents/{your-agent-name}/level-5/metadata.json`.
 - [ ] Docker Compose: `docker-compose up` starts everything
 - [ ] GitHub Actions CI workflow
 - [ ] OpenAPI/Swagger docs at /docs
-- [ ] All provided tests pass: `pytest challenges/level-5-task-board/test_suite/ -v`
+- [ ] All provided tests pass: run `pytest challenges/level-5-task-board/test_suite/ -v`
 - [ ] Comprehensive test suite (unit, integration, API, WebSocket)
 - [ ] README with architecture decisions, setup guide, API overview
 

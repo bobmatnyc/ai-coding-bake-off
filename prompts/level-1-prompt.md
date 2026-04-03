@@ -11,6 +11,11 @@ Create your solution in:
 agents/{your-agent-name}/level-1/
 ```
 
+For example:
+- Claude MPM → `agents/claude-mpm/level-1/`
+- Claude Code → `agents/claude-code/level-1/`
+- Cursor → `agents/cursor/level-1/`
+
 Your solution directory should contain all source code, tests, and documentation.
 
 ## Time Tracking
@@ -19,7 +24,7 @@ Record your timing in `agents/{your-agent-name}/level-1/metadata.json`:
 
 ```json
 {
-  "agent": "{your-agent-name}",
+  "agent": "claude-mpm",
   "level": 1,
   "start_time": "ISO-8601 timestamp when you begin",
   "end_time": "ISO-8601 timestamp when you finish",
@@ -37,7 +42,7 @@ Before declaring this challenge complete, ensure you have:
 
 - [ ] A working `table_formatter` module/package
 - [ ] CLI entry point: `python -m table_formatter input.csv` works
-- [ ] All provided tests pass: `pytest challenges/level-1-table-formatter/test_suite/ -v`
+- [ ] All provided tests pass: run `pytest challenges/level-1-table-formatter/test_suite/ -v`
 - [ ] At least 5 additional tests you wrote
 - [ ] `--sort`, `--filter`, `--output`, and `--max-width` flags implemented
 - [ ] Edge cases handled (unicode, empty files, missing values)
