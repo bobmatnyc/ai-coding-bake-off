@@ -131,6 +131,3 @@ class ActivityResponse(BaseModel):
     action: str
     details: Dict[str, Any]
     created_at: datetime
-```
-
-harnesses/claude-mpm/output/level-5/task_board/routes/users.py

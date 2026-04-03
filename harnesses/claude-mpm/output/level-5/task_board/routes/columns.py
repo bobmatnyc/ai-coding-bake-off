@@ -59,6 +59,3 @@ def delete_column(
         raise HTTPException(status_code=404, detail="Column not found")
     db.delete(col)
     db.commit()
-```
-
-harnesses/claude-mpm/output/level-5/task_board/routes/activity.py

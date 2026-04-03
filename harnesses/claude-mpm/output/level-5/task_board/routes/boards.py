@@ -245,6 +245,3 @@ def get_board_activity(
         )
         for a in activities
     ]
-```
-
-harnesses/claude-mpm/output/level-5/task_board/routes/tasks.py

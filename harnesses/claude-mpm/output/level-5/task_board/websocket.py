@@ -43,6 +43,3 @@ async def websocket_endpoint(board_id: int, websocket: WebSocket):
             await websocket.receive_text()
     except WebSocketDisconnect:
         manager.disconnect(board_id, websocket)
-```
-
-harnesses/claude-mpm/output/level-5/requirements.txt
