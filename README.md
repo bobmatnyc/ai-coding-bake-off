@@ -116,7 +116,7 @@ pip install -e ".[dev]"
 ### Running a Benchmark
 
 ```bash
-# 1. Set up an agent workspace
+# 1. Set up a harness workspace
 ./scripts/setup_agent_workspace.sh claude-code
 
 # 2. Give the agent the prompt for a level
@@ -138,7 +138,7 @@ python scripts/generate_report.py
 ```
 ai-coding-bake-off/
 ├── challenges/          # Problem definitions (read-only for agents)
-├── agents/              # Each agent's workspace and solutions
+├── harnesses/           # Each agent's workspace (instructions + output)
 ├── prompts/             # Standardized prompts per challenge level
 ├── evaluation/          # Automated scoring and cross-review framework
 ├── scripts/             # Helper scripts for setup and reporting

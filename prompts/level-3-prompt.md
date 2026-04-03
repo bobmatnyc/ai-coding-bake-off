@@ -8,17 +8,17 @@ Read the problem description at `challenges/level-3-weather-alerter/PROBLEM.md` 
 
 Create your solution in:
 ```
-agents/{your-agent-name}/level-3/
+harnesses/{your-agent-name}/output/level-3/
 ```
 
 For example:
-- Claude MPM → `agents/claude-mpm/level-3/`
-- Claude Code → `agents/claude-code/level-3/`
-- Cursor → `agents/cursor/level-3/`
+- Claude MPM -> `harnesses/claude-mpm/output/level-3/`
+- Claude Code -> `harnesses/claude-code/output/level-3/`
+- Cursor -> `harnesses/cursor/output/level-3/`
 
 ## Time Tracking
 
-Record timing in `agents/{your-agent-name}/level-3/metadata.json` (use `"agent": "claude-mpm"` when running as Claude MPM).
+Record timing in `harnesses/{your-agent-name}/output/level-3/metadata.json` (use `"agent": "claude-mpm"` when running as Claude MPM).
 
 ## Delivery Checklist
 
@@ -34,7 +34,7 @@ Record timing in `agents/{your-agent-name}/level-3/metadata.json` (use `"agent":
 
 ## Constraints
 
-- **Do NOT look at other agents' solutions**
+- **Do NOT look at other harnesses' solutions**
 - Target Python 3.12+
 - Must support both real API and mock mode
 - `docker-compose up` should start the service

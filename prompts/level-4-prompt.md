@@ -8,17 +8,17 @@ Read the problem description at `challenges/level-4-doc-pipeline/PROBLEM.md` and
 
 Create your solution in:
 ```
-agents/{your-agent-name}/level-4/
+harnesses/{your-agent-name}/output/level-4/
 ```
 
 For example:
-- Claude MPM → `agents/claude-mpm/level-4/`
-- Claude Code → `agents/claude-code/level-4/`
-- Cursor → `agents/cursor/level-4/`
+- Claude MPM -> `harnesses/claude-mpm/output/level-4/`
+- Claude Code -> `harnesses/claude-code/output/level-4/`
+- Cursor -> `harnesses/cursor/output/level-4/`
 
 ## Time Tracking
 
-Record timing in `agents/{your-agent-name}/level-4/metadata.json` (use `"agent": "claude-mpm"` when running as Claude MPM).
+Record timing in `harnesses/{your-agent-name}/output/level-4/metadata.json` (use `"agent": "claude-mpm"` when running as Claude MPM).
 
 ## Delivery Checklist
 
@@ -34,7 +34,7 @@ Record timing in `agents/{your-agent-name}/level-4/metadata.json` (use `"agent":
 
 ## Constraints
 
-- **Do NOT look at other agents' solutions**
+- **Do NOT look at other harnesses' solutions**
 - Target Python 3.12+
 - NLP can use any library (spaCy, NLTK, regex-based, etc.)
 - Must demonstrate extensibility with at least one example custom stage

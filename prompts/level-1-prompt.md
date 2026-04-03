@@ -8,19 +8,19 @@ Read the problem description at `challenges/level-1-table-formatter/PROBLEM.md` 
 
 Create your solution in:
 ```
-agents/{your-agent-name}/level-1/
+harnesses/{your-agent-name}/output/level-1/
 ```
 
 For example:
-- Claude MPM → `agents/claude-mpm/level-1/`
-- Claude Code → `agents/claude-code/level-1/`
-- Cursor → `agents/cursor/level-1/`
+- Claude MPM -> `harnesses/claude-mpm/output/level-1/`
+- Claude Code -> `harnesses/claude-code/output/level-1/`
+- Cursor -> `harnesses/cursor/output/level-1/`
 
 Your solution directory should contain all source code, tests, and documentation.
 
 ## Time Tracking
 
-Record your timing in `agents/{your-agent-name}/level-1/metadata.json`:
+Record your timing in `harnesses/{your-agent-name}/output/level-1/metadata.json`:
 
 ```json
 {
@@ -51,7 +51,7 @@ Before declaring this challenge complete, ensure you have:
 
 ## Constraints
 
-- **Do NOT look at other agents' solutions** in `agents/*/level-1/`
+- **Do NOT look at other harnesses' solutions** in `harnesses/*/output/level-1/`
 - Use only Python standard library plus any packages you choose to install
 - Target Python 3.12+
 - Aim for clean, typed, well-tested code

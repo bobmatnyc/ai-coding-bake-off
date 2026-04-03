@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-AGENTS_DIR = PROJECT_ROOT / "agents"
+AGENTS_DIR = PROJECT_ROOT / "harnesses"
 CHALLENGES_DIR = PROJECT_ROOT / "challenges"
 
 LEVEL_DIRS = {
@@ -87,7 +87,7 @@ def run_test_suite(agent: str, level: int) -> TestResult:
 
     challenge_dir = CHALLENGES_DIR / LEVEL_DIRS[level]
     test_dir = challenge_dir / "test_suite"
-    agent_solution = AGENTS_DIR / agent / f"level-{level}"
+    agent_solution = AGENTS_DIR / agent / "output" / f"level-{level}"
 
     if not agent_solution.exists():
         result.stderr = f"Solution directory not found: {agent_solution}"
@@ -155,7 +155,7 @@ def main() -> None:
 
     agents = discover_agents()
     if not agents:
-        print("No agent directories found in agents/")
+        print("No agent directories found in harnesses/")
         sys.exit(1)
 
     print(f"Discovered agents: {', '.join(agents)}")
@@ -163,7 +163,7 @@ def main() -> None:
 
     for agent in agents:
         for level in range(1, 6):
-            agent_level_dir = AGENTS_DIR / agent / f"level-{level}"
+            agent_level_dir = AGENTS_DIR / agent / "output" / f"level-{level}"
             if not agent_level_dir.exists():
                 continue
 

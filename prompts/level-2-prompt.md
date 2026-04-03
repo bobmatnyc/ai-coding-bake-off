@@ -8,19 +8,19 @@ Read the problem description at `challenges/level-2-git-analyzer/PROBLEM.md` and
 
 Create your solution in:
 ```
-agents/{your-agent-name}/level-2/
+harnesses/{your-agent-name}/output/level-2/
 ```
 
 For example:
-- Claude MPM → `agents/claude-mpm/level-2/`
-- Claude Code → `agents/claude-code/level-2/`
-- Cursor → `agents/cursor/level-2/`
+- Claude MPM -> `harnesses/claude-mpm/output/level-2/`
+- Claude Code -> `harnesses/claude-code/output/level-2/`
+- Cursor -> `harnesses/cursor/output/level-2/`
 
 This should be a properly structured Python project with `pyproject.toml`, `src/` layout, and `tests/`.
 
 ## Time Tracking
 
-Record your timing in `agents/{your-agent-name}/level-2/metadata.json`:
+Record your timing in `harnesses/{your-agent-name}/output/level-2/metadata.json`:
 
 ```json
 {
@@ -48,7 +48,7 @@ Record your timing in `agents/{your-agent-name}/level-2/metadata.json`:
 
 ## Constraints
 
-- **Do NOT look at other agents' solutions**
+- **Do NOT look at other harnesses' solutions**
 - Target Python 3.12+
 - The tool must work on real git repositories
 - The sample fixture is for testing; real usage should invoke git

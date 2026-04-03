@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-AGENTS_DIR = PROJECT_ROOT / "agents"
+AGENTS_DIR = PROJECT_ROOT / "harnesses"
 
 
 @dataclass
@@ -85,7 +85,7 @@ def discover_solutions() -> list[tuple[str, int, Path]]:
         if not agent_dir.is_dir() or agent_dir.name.startswith("."):
             continue
         for level in range(1, 6):
-            level_dir = agent_dir / f"level-{level}"
+            level_dir = agent_dir / "output" / f"level-{level}"
             if level_dir.exists():
                 solutions.append((agent_dir.name, level, level_dir))
     return solutions
@@ -95,7 +95,7 @@ def main() -> None:
     """Run code quality checks on all solutions."""
     solutions = discover_solutions()
     if not solutions:
-        print("No solutions found in agents/")
+        print("No solutions found in harnesses/")
         sys.exit(1)
 
     results: list[QualityResult] = []

@@ -60,12 +60,12 @@ evaluation/results/*.md
 evaluation/results/*.json
 !evaluation/results/.gitkeep
 
-# Agent solution artifacts
-agents/*/level-*/htmlcov/
-agents/*/level-*/.mypy_cache/
-agents/*/level-*/__pycache__/
-agents/*/level-*/node_modules/
-agents/*/level-*/.venv/
+# Harness solution artifacts
+harnesses/*/output/level-*/htmlcov/
+harnesses/*/output/level-*/.mypy_cache/
+harnesses/*/output/level-*/__pycache__/
+harnesses/*/output/level-*/node_modules/
+harnesses/*/output/level-*/.venv/
 
 # MPM
 .claude-mpm/memories/

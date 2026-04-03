@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-AGENTS_DIR = PROJECT_ROOT / "agents"
+AGENTS_DIR = PROJECT_ROOT / "harnesses"
 
 
 @dataclass
@@ -36,7 +36,7 @@ def collect_metrics() -> list[AgentMetrics]:
             continue
 
         for level in range(1, 6):
-            metadata_path = agent_dir / f"level-{level}" / "metadata.json"
+            metadata_path = agent_dir / "output" / f"level-{level}" / "metadata.json"
             if not metadata_path.exists():
                 continue
 

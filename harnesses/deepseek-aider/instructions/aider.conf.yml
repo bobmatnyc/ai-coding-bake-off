@@ -1,0 +1,5 @@
+# Aider configuration for DeepSeek harness
+model: ollama/deepseek-v3
+architect: true
+auto-commits: false
+map-tokens: 2048

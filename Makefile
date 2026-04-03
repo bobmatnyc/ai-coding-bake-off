@@ -9,7 +9,7 @@ test-level: ## Run provided tests for a level: make test-level LEVEL=1
 	pytest challenges/level-$(LEVEL)-*/test_suite/ -v
 
 test-solution: ## Run agent's tests: make test-solution AGENT=claude-mpm LEVEL=1
-	pytest agents/$(AGENT)/level-$(LEVEL)/tests/ -v
+	pytest harnesses/$(AGENT)/output/level-$(LEVEL)/tests/ -v
 
 test-all-levels: ## Run all provided tests for an agent: make test-all-levels AGENT=claude-mpm
 	@for level in 1 2 3 4 5; do \

@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
-AGENTS_DIR = PROJECT_ROOT / "agents"
+AGENTS_DIR = PROJECT_ROOT / "harnesses"
 
 
 @dataclass
@@ -113,14 +113,14 @@ def main() -> None:
     results: list[CoverageResult] = []
 
     if not AGENTS_DIR.exists():
-        print("No agents/ directory found")
+        print("No harnesses/ directory found")
         sys.exit(1)
 
     for agent_dir in sorted(AGENTS_DIR.iterdir()):
         if not agent_dir.is_dir() or agent_dir.name.startswith("."):
             continue
         for level in range(1, 6):
-            level_dir = agent_dir / f"level-{level}"
+            level_dir = agent_dir / "output" / f"level-{level}"
             if not level_dir.exists():
                 continue
 

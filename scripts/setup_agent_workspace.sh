@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Setup an agent workspace with subdirectories for each challenge level.
+# Setup a harness workspace with instructions/ and output/ subdirectories.
 #
 # Usage:
 #   ./scripts/setup_agent_workspace.sh <agent-name>
@@ -12,7 +12,7 @@ set -euo pipefail
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <agent-name>"
     echo ""
-    echo "Available agents: cursor, claude-code, claude-mpm, codex, gemini, anti-gravity, qwen-aider, deepseek-aider"
+    echo "Available agents: cursor, claude-code, claude-mpm, codex, gemini, anti-gravity, augment, qwen-aider, deepseek-aider"
     echo "Or provide a custom agent name."
     exit 1
 fi
@@ -20,14 +20,17 @@ fi
 AGENT_NAME="$1"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-AGENT_DIR="$PROJECT_ROOT/agents/$AGENT_NAME"
+HARNESS_DIR="$PROJECT_ROOT/harnesses/$AGENT_NAME"
 
-echo "Setting up workspace for agent: $AGENT_NAME"
-echo "Directory: $AGENT_DIR"
+echo "Setting up harness for agent: $AGENT_NAME"
+echo "Directory: $HARNESS_DIR"
 
-# Create level directories
+# Create instructions directory
+mkdir -p "$HARNESS_DIR/instructions"
+
+# Create output level directories
 for level in 1 2 3 4 5; do
-    level_dir="$AGENT_DIR/level-$level"
+    level_dir="$HARNESS_DIR/output/level-$level"
     mkdir -p "$level_dir"
 
     # Create metadata.json template
@@ -45,12 +48,12 @@ for level in 1 2 3 4 5; do
 EOF
     fi
 
-    echo "  Created level-$level/ with metadata.json"
+    echo "  Created output/level-$level/ with metadata.json"
 done
 
 # Create agent README if it doesn't exist
-if [ ! -f "$AGENT_DIR/README.md" ]; then
-    cat > "$AGENT_DIR/README.md" << EOF
+if [ ! -f "$HARNESS_DIR/README.md" ]; then
+    cat > "$HARNESS_DIR/README.md" << EOF
 # $AGENT_NAME
 
 ## Agent Profile
@@ -78,9 +81,36 @@ EOF
     echo "  Created README.md"
 fi
 
+# Create setup.md if it doesn't exist
+if [ ! -f "$HARNESS_DIR/instructions/setup.md" ]; then
+    cat > "$HARNESS_DIR/instructions/setup.md" << EOF
+# $AGENT_NAME Harness Setup
+
+## Prerequisites
+
+- Python 3.12+
+- (Add agent-specific prerequisites)
+
+## Configuration
+
+1. (Add agent-specific configuration steps)
+
+## Running a Challenge
+
+1. Read the prompt from \`prompts/level-{N}-prompt.md\`
+2. Build your solution in \`output/level-{N}/\`
+
+## Output
+
+- Solutions in \`output/level-{N}/\`
+- Metadata in \`output/level-{N}/metadata.json\`
+EOF
+    echo "  Created instructions/setup.md"
+fi
+
 echo ""
-echo "Workspace ready. Give the agent the prompt from:"
+echo "Harness ready. Give the agent the prompt from:"
 echo "  prompts/level-1-prompt.md"
 echo ""
 echo "The agent should create its solution in:"
-echo "  agents/$AGENT_NAME/level-1/"
+echo "  harnesses/$AGENT_NAME/output/level-1/"
