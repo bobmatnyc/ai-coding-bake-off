@@ -1,5 +1,5 @@
-# Aider configuration for DeepSeek harness
-model: ollama/deepseek-v3
+# Aider configuration for DeepSeek harness (via OpenRouter)
+model: openrouter/deepseek/deepseek-coder
 architect: true
 auto-commits: true
 yes-always: true

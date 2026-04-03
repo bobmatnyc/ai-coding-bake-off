@@ -77,3 +77,5 @@ harnesses/*/output/level-*/.venv/
 
 # Vector search
 .mcp-vector-search/
+.aider*
+.aider.conf.yml
