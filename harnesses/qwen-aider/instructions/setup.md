@@ -2,31 +2,34 @@
 
 ## Prerequisites
 
+- aider-chat installed (`pipx install aider-chat`)
+- OPENROUTER_API_KEY in project root .env file
 - Python 3.12+
-- `pip install aider-chat`
-- Ollama with Qwen 3 model pulled: `ollama pull qwen3`
 
-## Configuration
-
-1. Copy `aider.conf.yml` to the working directory or pass flags directly
-2. Aider runs in architect mode with Qwen 3 via Ollama
-
-## Running a Challenge
+## Running a Single Level
 
 ```bash
-cd harnesses/qwen-aider/output/level-1
-aider --config ../../instructions/aider.conf.yml \
-  --message "Read ../../../../prompts/level-1-prompt.md and ../../../../challenges/level-1-table-formatter/PROBLEM.md. Build the solution here."
+cd harnesses/qwen-aider
+./run-level.sh 1    # Solve level 1
 ```
+
+## Running the Full Bake-Off
+
+```bash
+cd harnesses/qwen-aider
+./run-bakeoff.sh    # All 5 levels sequentially
+```
+
+## How It Works
+
+The launch scripts:
+1. Load the API key from ../../.env
+2. Pre-load all challenge files into aider's context (PROBLEM.md, rubric, tests, fixtures)
+3. Set the working directory to output/level-{N}/
+4. Give aider the initial prompt with full instructions
+5. Aider runs autonomously (yes-always mode from .aider.conf.yml)
 
 ## Output
 
 - Solutions in `output/level-{N}/`
 - Metadata in `output/level-{N}/metadata.json`
-
-## Reproducing
-
-1. Clone the repository
-2. Install aider-chat and Ollama with Qwen 3
-3. Run aider from the output directory with the config
-4. Results appear in `harnesses/qwen-aider/output/`
