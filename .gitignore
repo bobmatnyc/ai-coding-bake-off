@@ -66,3 +66,14 @@ agents/*/level-*/.mypy_cache/
 agents/*/level-*/__pycache__/
 agents/*/level-*/node_modules/
 agents/*/level-*/.venv/
+
+# MPM
+.claude-mpm/memories/
+.claude-mpm/resume-logs/
+.claude-mpm/responses/
+
+# Claude
+.claude/
+
+# Vector search
+.mcp-vector-search/

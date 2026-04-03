@@ -1,83 +1,112 @@
-# AI Coding Agent Bake-Off --- Claude Code / MPM Instructions
+# AI Coding Agent Bake-Off
 
-## Project Purpose
+Benchmark suite testing 9 AI coding agents across 5 Python challenges of increasing complexity. Sequel to ["Orchestration Beats Raw Power"](https://hyperdev.matsuoka.com/p/orchestration-beats-raw-power) (Dec 2025).
 
-This is a benchmark suite for evaluating AI coding agents. Multiple agents solve the same five Python challenges, and their solutions are cross-evaluated.
+## Critical Rules
+
+- `challenges/` is **READ-ONLY** during competition — never modify problem files or test suites
+- Each agent's workspace is isolated: `agents/{agent-name}/level-{N}/`
+- Solutions must be self-contained Python projects within their workspace directory
+- **Do NOT look at other agents' solutions** until cross-review phase
+- All solutions target Python 3.12+
+- Record timing/token metadata in `metadata.json` per solution
 
 ## Project Structure
 
 ```
 ai-coding-bake-off/
-├── challenges/          # READ-ONLY problem definitions and test suites
-├── agents/              # Agent workspaces --- solutions go here
+├── challenges/          # Problem definitions + test suites (READ-ONLY)
+│   ├── level-1-table-formatter/   # ~30 min, single module
+│   ├── level-2-git-analyzer/      # ~1 hr, CLI tool with packaging
+│   ├── level-3-weather-alerter/   # ~2 hr, API + DB + Docker
+│   ├── level-4-doc-pipeline/      # ~3-4 hr, architecture challenge
+│   └── level-5-task-board/        # ~6-8 hr, full-stack app
+├── agents/              # Agent workspaces (solutions go here)
+│   ├── claude-mpm/      # Claude MPM solutions
+│   ├── cursor/          # Cursor solutions
+│   ├── claude-code/     # Claude Code solutions
+│   ├── codex/           # OpenAI Codex solutions
+│   ├── gemini/          # Gemini solutions
+│   ├── anti-gravity/    # Anti-Gravity solutions
+│   ├── augment/         # Augment Code solutions
+│   ├── qwen-aider/      # Qwen 2.5 + Aider solutions
+│   └── deepseek-aider/  # DeepSeek + Aider solutions
 ├── prompts/             # Standardized prompts (one per level)
-├── evaluation/          # Scoring framework and cross-review tools
-├── scripts/             # Helper scripts
+├── evaluation/          # Scoring framework + cross-review
+│   ├── automated/       # Python scripts for metrics
+│   ├── cross_review/    # Blind review protocol
+│   └── results/         # Collected scores
+├── scripts/             # Helpers (setup, metrics, reports)
 └── docs/                # Publication materials
 ```
 
-## How to Work on Challenges
+## Workflows
 
-### As a Competing Agent
+### Competing (as Claude MPM agent)
 
-1. Read the prompt at `prompts/level-X-prompt.md`
-2. Read the problem at `challenges/level-X-*/PROBLEM.md`
-3. Create your solution in `agents/claude-code/level-X/` (or `agents/claude-mpm/level-X/`)
-4. Run the provided test suite: `pytest challenges/level-X-*/test_suite/`
-5. Write your own additional tests
-6. Do NOT look at other agents' solutions
+1. Read prompt: `prompts/level-{N}-prompt.md`
+2. Read problem: `challenges/level-{N}-*/PROBLEM.md`
+3. Build solution in: `agents/claude-mpm/level-{N}/`
+4. Run provided tests: `pytest challenges/level-{N}-*/test_suite/ -v`
+5. Write additional tests in your solution
+6. Record metadata in `agents/claude-mpm/level-{N}/metadata.json`
 
-### As an Evaluator (Cross-Review)
+### Evaluating (cross-review mode)
 
-1. Read the evaluation rubric at `challenges/level-X-*/evaluation/rubric.md`
-2. Read the cross-review prompt at `evaluation/cross_review/review_prompt.md`
-3. Evaluate the assigned agent's solution
-4. Write your review to `evaluation/results/`
+1. Read rubric: `challenges/level-{N}-*/evaluation/rubric.md`
+2. Read review protocol: `evaluation/cross_review/review_prompt.md`
+3. Evaluate assigned (anonymized) solutions
+4. Write reviews to `evaluation/results/`
 
-## Running Tests
+### Running Automated Evaluation
 
 ```bash
-# Run test suite for a specific level
-pytest challenges/level-1-table-formatter/test_suite/ -v
-
-# Run an agent's own tests
-pytest agents/claude-code/level-1/tests/ -v
-
-# Run all evaluation scripts
-python evaluation/automated/run_tests.py
-python evaluation/automated/code_quality.py
-python evaluation/automated/coverage_check.py
+python evaluation/automated/run_tests.py        # Test all solutions
+python evaluation/automated/code_quality.py      # Ruff + mypy scoring
+python evaluation/automated/coverage_check.py    # Coverage analysis
+python scripts/collect_metrics.py                # Aggregate all metrics
+python scripts/generate_report.py                # Generate comparison report
 ```
 
-## Important Rules
+## Code Standards
 
-- **challenges/** is READ-ONLY during competition. Do not modify problem files or test suites.
-- **agents/{your-agent}/** is your workspace. All solution code goes here.
-- Each level solution should be a self-contained project within `agents/{agent}/level-X/`.
-- Record timing metadata in `agents/{agent}/level-X/metadata.json`.
-- Do not look at other agents' directories until cross-review phase.
+- Python 3.12+, type hints on all public functions
+- pytest for testing, ruff for linting, mypy for type checking
+- Docstrings on modules, classes, and public functions
+- Every solution includes README.md with setup and usage
 
 ## Metadata Format
 
-Each solution should include `metadata.json`:
+Every solution includes `metadata.json`:
 
 ```json
 {
-  "agent": "claude-code",
+  "agent": "claude-mpm",
   "level": 1,
   "start_time": "2026-04-03T10:00:00Z",
   "end_time": "2026-04-03T10:28:00Z",
   "wall_clock_minutes": 28,
   "estimated_tokens": 15000,
-  "notes": "Any observations about the process"
+  "model": "claude-opus-4-0520",
+  "orchestration_level": "high",
+  "notes": "Observations about the process"
 }
 ```
 
-## Code Quality Standards
+## The 9 Agents
 
-Solutions should aim for:
-- Python 3.12+ compatibility
-- Type hints on all public functions
-- Passing ruff and mypy checks
-- pytest for testing
-- Docstrings on modules, classes, and public functions
+| Agent | Type | Orchestration Level |
+|-------|------|-------------------|
+| Claude MPM | Multi-agent orchestrated | High |
+| Claude Code | CLI agent with tool use | Medium |
+| Cursor | IDE-integrated | Low-Medium |
+| Codex (OpenAI) | API-based | Low |
+| Gemini 2.5 Pro | Long-context single model | Low-Medium |
+| Anti-Gravity | Multi-agent framework | High |
+| Augment Code | Opus-based code agent | Medium |
+| Qwen 2.5 + Aider | Local model + agentic wrapper | Medium |
+| DeepSeek + Aider | Local model + agentic wrapper | Medium |
+
+## Publication
+
+Follow-up article to "Orchestration Beats Raw Power". Article outline in `docs/article-outline.md`, methodology in `docs/methodology.md`.
