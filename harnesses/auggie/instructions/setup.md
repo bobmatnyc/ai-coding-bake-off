@@ -1,33 +1,95 @@
-# Auggie Harness Setup
+# Auggie: AI Coding Bake-Off
 
-## Prerequisites
+You are **auggie**, one of 8 AI coding agents competing in a benchmark. You will solve 5 Python challenges of increasing complexity, then review other agents' solutions.
 
+## Setup
+
+### Prerequisites
 - IDE with Augment Code extension (VS Code or compatible)
 - Python 3.12+
 
-## Configuration
-
+### Configuration
 1. Open the project root in your IDE with Augment Code
-2. No special instruction file needed --- use the prompt directly
+2. Provide the prompt for each level directly to the agent
 
-## Running a Challenge
+## The Bake-Off
 
-1. Open `prompts/level-{N}-prompt.md`
-2. Instruct Auggie: "Read this prompt and solve the challenge. Put your solution in harnesses/auggie/output/level-{N}/"
-3. Let the agent work
+### Phase 1: Competition --- Solve All 5 Levels
 
-## Output
+Work through all 5 challenges in order. Each level is a self-contained Python project.
 
-- Solutions in `output/level-{N}/`
-- Metadata in `output/level-{N}/metadata.json`
+| Level | Challenge | Time Budget | Complexity |
+|-------|-----------|-------------|------------|
+| 1 | Markdown Table Formatter | ~30 min | Single module, CLI tool |
+| 2 | Git Log Analyzer | ~1 hr | Multi-file package with pyproject.toml |
+| 3 | Weather Alerting Service | ~2 hr | REST API + SQLite + Docker |
+| 4 | Document Processing Pipeline | ~3-4 hr | Architecture challenge, extensible design |
+| 5 | Team Task Board | ~6-8 hr | Full-stack app with auth, WebSocket, CI |
 
-## Notes from Round 1
+**For each level:**
+1. Read the prompt: `../../prompts/level-{N}-prompt.md`
+2. Read the problem: `../../challenges/level-{N}-*/PROBLEM.md`
+3. Read the rubric (know what you're scored on): `../../challenges/level-{N}-*/evaluation/rubric.md`
+4. Build your solution in: `../output/level-{N}/`
+5. Run the provided test suite: `pytest ../../challenges/level-{N}-*/test_suite/ -v`
+6. Write additional tests in your solution
+7. Record timing in: `../output/level-{N}/metadata.json`
 
-Augment Code scored 83.1% in the December 2025 benchmark across 3 small Python tasks. Solid code generation but struggled with edge cases compared to orchestrated systems.
+**Do NOT look at other harnesses' output directories during this phase.**
+
+### Phase 2: Cross-Review --- Evaluate Other Agents
+
+After completing all 5 levels, switch to evaluation mode. You will review other agents' solutions using a blind review protocol.
+
+1. Read the review protocol: `../../evaluation/cross_review/review_prompt.md`
+2. For each level, for each other agent's solution:
+   a. Read the rubric: `../../challenges/level-{N}-*/evaluation/rubric.md`
+   b. Read the agent's solution in `../../harnesses/{other-agent}/output/level-{N}/`
+   c. Score against the rubric (1-5 per dimension)
+   d. Write your review to `../../evaluation/results/auggie-reviews-{other-agent}-level-{N}.md`
+3. Be objective --- score against the rubric, not against your own solution
+4. Solutions are evaluated blind where possible
+
+## Paths
+
+| What | Path |
+|------|------|
+| Challenges (READ-ONLY) | `../../challenges/level-{N}-*/PROBLEM.md` |
+| Prompts | `../../prompts/level-{N}-prompt.md` |
+| Rubrics | `../../challenges/level-{N}-*/evaluation/rubric.md` |
+| Your output | `../output/level-{N}/` |
+| Your metadata | `../output/level-{N}/metadata.json` |
+| Review protocol | `../../evaluation/cross_review/review_prompt.md` |
+| Your reviews | `../../evaluation/results/` |
+
+## Rules
+
+- `challenges/` is READ-ONLY --- never modify problem files or test suites
+- All solutions target Python 3.12+ with type hints, tests, docstrings
+- Each level solution is a self-contained project in its own directory
+- Record timing from first reading the prompt to final commit
+- Do NOT look at other harnesses' output during Phase 1
+
+## Metadata Format
+
+Record in `../output/level-{N}/metadata.json` after each level:
+
+```json
+{
+  "agent": "auggie",
+  "level": 1,
+  "start_time": "2026-04-03T10:00:00Z",
+  "end_time": "2026-04-03T10:28:00Z",
+  "wall_clock_minutes": 28,
+  "estimated_tokens": 15000,
+  "model": "augment-code",
+  "notes": "Observations about the process"
+}
+```
 
 ## Reproducing
 
 1. Clone the repository
 2. Install IDE with Augment Code extension
-3. Open the project and provide the prompt
+3. Open the project and provide the prompt for each level
 4. Results appear in `harnesses/auggie/output/`

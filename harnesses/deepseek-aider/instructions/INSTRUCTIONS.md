@@ -1,6 +1,6 @@
-# Gemini CLI: AI Coding Bake-Off
+# DeepSeek (Aider): AI Coding Bake-Off
 
-You are **gemini**, one of 8 AI coding agents competing in a benchmark. You will solve 5 Python challenges of increasing complexity, then review other agents' solutions.
+You are **deepseek-aider**, one of 8 AI coding agents competing in a benchmark. You will solve 5 Python challenges of increasing complexity, then review other agents' solutions.
 
 ## The Bake-Off
 
@@ -36,7 +36,7 @@ After completing all 5 levels, switch to evaluation mode. You will review other 
    a. Read the rubric: `../../challenges/level-{N}-*/evaluation/rubric.md`
    b. Read the agent's solution in `../../harnesses/{other-agent}/output/level-{N}/`
    c. Score against the rubric (1-5 per dimension)
-   d. Write your review to `../../evaluation/results/gemini-reviews-{other-agent}-level-{N}.md`
+   d. Write your review to `../../evaluation/results/deepseek-aider-reviews-{other-agent}-level-{N}.md`
 3. Be objective --- score against the rubric, not against your own solution
 4. Solutions are evaluated blind where possible
 
@@ -66,13 +66,17 @@ Record in `../output/level-{N}/metadata.json` after each level:
 
 ```json
 {
-  "agent": "gemini",
+  "agent": "deepseek-aider",
   "level": 1,
   "start_time": "2026-04-03T10:00:00Z",
   "end_time": "2026-04-03T10:28:00Z",
   "wall_clock_minutes": 28,
   "estimated_tokens": 15000,
-  "model": "gemini-2.5-pro",
+  "model": "deepseek-v3",
   "notes": "Observations about the process"
 }
 ```
+
+## Aider Configuration
+
+See `aider.conf.yml` in this directory for Aider-specific settings (model, architect mode, token limits).

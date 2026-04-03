@@ -5,7 +5,7 @@ When this project is run under Claude MPM, the agent name is **claude-mpm**.
 All solution output goes to: `harnesses/claude-mpm/output/level-{N}/`
 All metadata files: `harnesses/claude-mpm/output/level-{N}/metadata.json`
 
-## Competition Mode
+## Phase 1: Competition Mode
 When working on a challenge level (prompted with "solve level X" or "work on level X"):
 - You are competing as the Claude MPM agent
 - Solutions go in harnesses/claude-mpm/output/level-{N}/
@@ -13,12 +13,15 @@ When working on a challenge level (prompted with "solve level X" or "work on lev
 - Track timing from prompt receipt to completion
 - Do NOT reference other harnesses' solutions
 
-## Evaluation Mode
+There are 5 levels total (Markdown Table Formatter, Git Log Analyzer, Weather Alerting Service, Document Processing Pipeline, Team Task Board). Complete all 5 in order.
+
+## Phase 2: Evaluation Mode
 When prompted to "evaluate" or "review" or "cross-review":
 - You are the evaluator, not a competitor
 - Follow the blind review protocol in evaluation/cross_review/review_prompt.md
-- Use the rubric for the specific level
+- Use the rubric for the specific level: challenges/level-{N}-*/evaluation/rubric.md
 - Be objective --- score against the rubric, not against your own solution
+- Write reviews to evaluation/results/claude-mpm-reviews-{other-agent}-level-{N}.md
 
 ## Orchestration Strategy for Competition
 For each challenge level, use this MPM delegation pattern:
