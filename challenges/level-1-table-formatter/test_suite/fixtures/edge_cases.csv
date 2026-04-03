@@ -1,0 +1,8 @@
+ID,Name,Description,Score,Notes
+1,Normal Row,A simple description,95.5,Nothing special
+2,,Empty name field,87.2,Name is missing
+3,Row With "Quotes",She said "hello, world",72.0,"Note with, comma"
+4,Very Long Description,This is an extremely long description that goes on and on and might cause formatting issues if not handled properly by truncation or wrapping logic in the table formatter,100.0,
+5,Trailing Spaces   ,Has trailing spaces,0.0,Zero score
+6,Special <chars> & more,Contains HTML-like characters & ampersands,55.5,<not html>
+7,01234,This ID looks numeric but the name is a zip code,42.0,Tricky

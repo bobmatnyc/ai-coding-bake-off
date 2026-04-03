@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Type checking
+.mypy_cache/
+.ruff_cache/
+.pytype/
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Databases (except fixtures)
+*.db
+!challenges/*/test_suite/fixtures/*.db
+
+# Docker
+docker-compose.override.yml
+
+# Node (for Level 5 frontend)
+node_modules/
+
+# Build artifacts
+*.tar.gz
+*.whl
+
+# Evaluation results (generated)
+evaluation/results/*.md
+evaluation/results/*.json
+!evaluation/results/.gitkeep
+
+# Agent solution artifacts
+agents/*/level-*/htmlcov/
+agents/*/level-*/.mypy_cache/
+agents/*/level-*/__pycache__/
+agents/*/level-*/node_modules/
+agents/*/level-*/.venv/
